@@ -1,16 +1,17 @@
 package com.mattmiss.kotlinfragments
 
 import android.content.res.Configuration
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
 
     // Creates a drawToggle variable
     private val drawerToogle by lazy {
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val fragmentA = FragmentSearchFood.newInstance()
+        replaceFragment(fragmentA)
+
         // set the toolbar
         setSupportActionBar(toolbar)
 
@@ -36,6 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         // Add a toggle listener to the menu drawer
         drawerLayout.addDrawerListener(drawerToogle)
+
+
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -49,14 +56,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectDrawerItem(item: MenuItem) {
-        var fragment: Fragment? = null
+        var fragment: androidx.fragment.app.Fragment? = null
         val fragmentClass = when (item.itemId) {
-            R.id.firstFragmentItem -> FragmentA::class.java
-            R.id.secondFragmentItem -> FragmentB::class.java
-            else -> FragmentA::class.java
+            R.id.firstFragmentItem -> FragmentSearchFood::class.java
+            R.id.secondFragmentItem -> FragmentMyFood::class.java
+            else -> FragmentSearchFood::class.java
         }
         try {
-            fragment = fragmentClass.newInstance() as Fragment
+            fragment = fragmentClass.newInstance() as androidx.fragment.app.Fragment
         } catch (e: ClassCastException) {
             e.printStackTrace()
         }
@@ -74,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun replaceFragment(fragment: Fragment?) {
+    private fun replaceFragment(fragment: androidx.fragment.app.Fragment?) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
         // changed to fragment!! for it to work

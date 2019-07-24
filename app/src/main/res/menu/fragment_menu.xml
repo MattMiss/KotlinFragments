@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:id="@+id/firstFragmentItem"
-            android:title="@string/first_image"
+            android:title="@string/first_fragment"
             android:icon="@drawable/ic_action_image1"
     />
     <item
             android:id="@+id/secondFragmentItem"
-            android:title="@string/second_image"
+            android:title="@string/second_fragment"
             android:icon="@drawable/ic_action_two"
     />
 </menu>

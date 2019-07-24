@@ -1,0 +1,626 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="10dp">
+
+    <LinearLayout
+            android:id="@+id/linearLayoutContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:background="#ff999999" android:id="@+id/linearLayout">
+            <TextView
+                    android:id="@+id/textViewFoodNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name Label"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" android:textAlignment="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:paddingTop="2dp" android:paddingBottom="2dp"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:text="Serving Sizexx"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/textViewServingSizelbl" android:textStyle="bold"
+                android:textSize="20sp" android:textColor="#000000"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" android:paddingTop="20dp"/>
+        <TextView
+                android:text="Measurement Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textViewServingDescription"
+                android:textStyle="bold"
+                android:textColor="#000000" android:textAlignment="textEnd" android:textSize="14sp"
+                android:textAllCaps="false" android:lineSpacingExtra="8sp" android:fontFamily="@font/poppins"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10sp" android:background="#ff000000">
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/caloriesLayout">
+            <TextView
+                    android:text="Amount per serving"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" android:id="@+id/textView3"
+                    android:textStyle="bold" android:textColor="#000000"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewCaloriesLabel" android:textScaleX="1.2"
+                    android:fontFamily="@font/poppins_semibold"/>
+            <TextView
+                    android:id="@+id/textViewCaloriesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="Calories"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="@font/poppins_semibold"/>
+            <TextView
+                    android:id="@+id/textViewCaloriesAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="#141414"
+                    android:textSize="36sp"
+                    android:textStyle="normal|bold"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textAllCaps="false" android:elegantTextHeight="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6sp" android:background="#ff000000">
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/totalFatLayout">
+
+            <TextView
+                    android:text="Total Fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTotalFat" android:layout_weight="1"
+                    android:textColor="#000000" android:textStyle="bold" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textScaleX="1.2" android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTotalFatAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewTotalFatSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTotalFatSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/saturatedFatLayout">
+
+            <TextView
+                    android:text="Saturated Fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewSaturatedFat"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
+                    android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light" app:layout_constraintBottom_toBottomOf="parent"
+            />
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewSaturatedFatAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewSaturatedFatSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewSaturatedFatSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/TransFatLayout">
+
+            <TextView
+                    android:text="Trans Fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTransFat"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
+                    android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light" app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTransFatAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewTransFatSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTransFatSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/PolyunsaturatedLayout">
+
+            <TextView
+                    android:text="Polyunsaturated Fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewPolyunsaturated"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewPolyunsaturatedAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewPolyunsaturatedSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewPolyunsaturatedSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/MonounsaturatedLayout">
+
+            <TextView
+                    android:text="Monounsaturated Fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewMonounsaturated"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewMonounsaturatedAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewMonounsaturatedSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewMonounsaturatedSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/CholesterolLayout">
+
+            <TextView
+                    android:text="Cholesterol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewCholesterol"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewCholesterolAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewCholesterolSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="mg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewCholesterolSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/SodiumLayout">
+
+            <TextView
+                    android:text="Sodium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewSodium"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:textStyle="bold" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light" app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewSodiumAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewSodiumSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="mg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewSodiumSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/PotassiumLayout">
+
+            <TextView
+                    android:text="Potassium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewPotassium"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewPotassiumAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewPotassiumSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="mg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewPotassiumSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/TotalCarbsLayout">
+
+            <TextView
+                    android:text="Total Carbohydrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewSTotalCarbs"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTotalCarbsAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewTotalCarbsSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTotalCarbsSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/FiberLayout">
+
+            <TextView
+                    android:text="Dietary Fiber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewFiber"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textScaleX="1.2" android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewFiberAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewFiberSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewFiberSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/TotalSugarsLayout">
+
+            <TextView
+                    android:text="Total Sugars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTotalSugars"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewTotalSugarsAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewTotalSugarsSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTotalSugarsSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/ProteinLayout">
+
+            <TextView
+                    android:text="Protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewProtein"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textScaleX="1.2"
+                    android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewProteinAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewProteinSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewProteinSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10sp" android:background="#ff000000" android:layout_marginTop="2dp">
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/VitaminALayout">
+
+            <TextView
+                    android:text="Vitamin A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewVitaminA"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textScaleX="1.2" android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewVitaminAAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewVitaminASize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewVitaminASize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/VitaminCLayout">
+
+            <TextView
+                    android:text="Vitamin C"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewVitaminC"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textScaleX="1.2" android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewVitaminCAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewVitaminCSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewVitaminCSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/CalciumLayout">
+
+            <TextView
+                    android:text="Calcium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewCalcium"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textScaleX="1.2" android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewCalciumAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewCalciumSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewCalciumSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/IronLayout">
+
+            <TextView
+                    android:text="Iron"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewIron"
+                    android:layout_weight="1"
+                    android:textColor="#000000" android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textScaleX="1.2" android:fontFamily="sans-serif-light"/>
+            <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" android:id="@+id/textViewIronAmount"
+                    app:layout_constraintEnd_toStartOf="@id/textViewIronSize"
+                    app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"
+                    android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#121212" android:fontFamily="sans-serif-condensed-light"/>
+            <TextView
+                    android:text="%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewIronSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="sans-serif-condensed-light"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+
+            <Button
+                    android:id="@+id/buttonDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="delete"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+
+
+            <Button
+                    android:id="@+id/buttonAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Save"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" android:fontFamily="sans-serif-condensed-medium"/>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

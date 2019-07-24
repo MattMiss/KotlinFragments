@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">Kotlin Fragments</string>
-    <string name="first_image">First Fragment</string>
-    <string name="second_image">Second Fragment</string>
+    <string name="app_name">Matts Food</string>
+    <string name="first_fragment">Search for Food</string>
+    <string name="second_fragment">My Saved Food</string>
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

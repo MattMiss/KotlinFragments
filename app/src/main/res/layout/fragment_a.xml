@@ -1,18 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.mattmiss.kotlinfragments.FragmentA">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:layout_marginTop="?attr/actionBarSize"
+                                                   tools:context="com.mattmiss.kotlinfragments.FragmentSearchFood">
 
     <ImageView
             android:id="@+id/firstFragmentImageView"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:background="@drawable/beginnerballerbg"/>
-    <TextView
-            android:text="TextView"
-            android:layout_width="282dp"
-            android:layout_height="350dp" android:id="@+id/textView" android:textSize="36sp"
-            android:textColor="#FFFFFF"/>
+            android:layout_height="match_parent"
+            android:background="@drawable/applebg"/>
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:text="@android:string/search_go"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchButton"
+                android:background="@drawable/button_toggle"
+                app:layout_constraintTop_toBottomOf="@+id/searchFood" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp" android:layout_marginTop="16dp"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/searchFood" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="50dp" app:layout_constraintTop_toTopOf="parent" android:textColor="#000000"
+                android:background="@drawable/button" android:hint="Enter Food Name" android:paddingTop="8dp"
+                android:paddingLeft="4dp" android:paddingBottom="4dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="start|top"
+                android:ems="10"
+                android:id="@+id/recyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/searchButton" android:background="@drawable/button"
+                android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="32dp" app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintVertical_bias="0.0" android:layout_marginBottom="16dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
