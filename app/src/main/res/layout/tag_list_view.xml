@@ -7,12 +7,12 @@
               android:layout_gravity="center">
 
     <TextView
-            android:id="@+id/lblSymbol"
+            android:id="@+id/lblCarotLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16dip"
             android:paddingLeft="8dip"
-            android:textStyle="bold" android:text="- ">
+            android:text="&lt;">
     </TextView>
 
     <TextView
@@ -22,7 +22,16 @@
           android:textSize="16dip"
           android:paddingTop="4dip"
           android:paddingBottom="4dip"
-          android:textStyle="bold" android:text="empty">
+          android:textStyle="bold"
+          android:text="empty">
+    </TextView>
+
+    <TextView
+            android:id="@+id/lblCarotRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dip"
+            android:text="&gt;">
     </TextView>
 
 </LinearLayout>

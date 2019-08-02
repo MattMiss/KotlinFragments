@@ -8,4 +8,28 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="category_prompt">Choose a category</string>
+
+    <string-array name="category_arrays">
+        <item></item>
+        <item>Alcohol</item>
+        <item>Beverages</item>
+        <item>Breakfast</item>
+        <item>Dairy</item>
+        <item>Dinner</item>
+        <item>Fast Food</item>
+        <item>Fish and Seafood</item>
+        <item>Fruit</item>
+        <item>Meat</item>
+        <item>Nuts and Seeds</item>
+        <item>Pasta, Rice and Noodles</item>
+        <item>Restaurant</item>
+        <item>Salads</item>
+        <item>Sauces and Spreads</item>
+        <item>Snacks</item>
+        <item>Soups</item>
+        <item>Sweets and Candy</item>
+        <item>Vegetables</item>
+    </string-array>
 </resources>

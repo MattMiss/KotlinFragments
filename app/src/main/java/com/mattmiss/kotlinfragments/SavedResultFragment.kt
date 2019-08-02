@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.food_saved_dialog.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 class SavedResultFragment : androidx.fragment.app.Fragment() {
@@ -79,30 +81,13 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
 
         savedItemViewModel = ViewModelProviders.of(this).get(SavedItemViewModel::class.java)
 
-        // Delete Button
-        buttonDelete.setOnClickListener{
-            savedItemViewModel.delete(savedItem)
-
-            var prev = activity!!.supportFragmentManager.findFragmentByTag("fragment_dialog") as androidx.fragment.app.DialogFragment
-
-            if (prev != null) {
-                val df = prev
-                df.dismiss()
-            }
-        }
-
-        //Accept Button
-        buttonAccept.setOnClickListener{
-
-            savedItemViewModel.insert(savedItem)
-        }
     }
 
 
 
 
     fun setLabels(foodJSON : JSONObject, position : Int){
-        textViewFoodNameLabel.text = foodJSON.getString(FOOD_NAME_STRING)
+        //textViewFoodNameLabel.text = foodJSON.getString(FOOD_NAME_STRING)
 
         var servingCheckString = ""
 
@@ -142,6 +127,9 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
         val containsVitaminC = servingCheckString.contains(VITAMIN_C_STRING, ignoreCase = true)
 
 
+        val dFormat = DecimalFormat("#.##")
+        dFormat.roundingMode = RoundingMode.CEILING
+
 
         println(foodJSON.toString())
 
@@ -178,7 +166,6 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
             textViewTotalFatSize.text = " "
         }
         if (containsFiber){
-            println("6!")
             textViewFiberAmount.text = servingCheckJSON.getString(FIBER_STRING)
         }else{
             textViewFiberAmount.text = NO_VALUE_STRING
@@ -207,7 +194,6 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
         }
 
         if (containsMonoUnsaturatedFat){
-            println("11!")
             textViewMonounsaturatedAmount.text = servingCheckJSON.getString(MONOUNSATURATED_FAT_STRING)
         }else{
             textViewMonounsaturatedAmount.text = NO_VALUE_STRING
@@ -273,4 +259,6 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
             textViewVitaminCSize.text = " "
         }
     }
+
+
 }

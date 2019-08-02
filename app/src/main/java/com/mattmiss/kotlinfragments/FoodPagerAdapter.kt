@@ -5,20 +5,14 @@ import androidx.fragment.app.FragmentManager
 import org.json.JSONException
 import org.json.JSONObject
 
-class SearchResultsPagerAdapter(manager: FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(manager) {
+class FoodPagerAdapter(manager: FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(manager) {
     var foodItem : String? = null
-    val SERVINGS_STRING = "servings"
-    var instanceCode : Int? = null
+
 
     override fun getItem(position: Int) : Fragment {
 
-        var returnFragment : Fragment
 
-        if (instanceCode == 1){
-            returnFragment = SearchResultFragment.newInstance(foodItem!!, position)
-        }else{
-            returnFragment = SavedResultFragment.newInstance(foodItem!!, position)
-        }
+        val returnFragment = SavedResultFragment.newInstance(foodItem!!, position)
 
         return returnFragment
 
@@ -27,8 +21,6 @@ class SearchResultsPagerAdapter(manager: FragmentManager) : androidx.fragment.ap
     override fun getCount(): Int {
         // Returns length of foodItem Servings Array
         var count = 0
-
-        val containsServings = foodItem!!.contains(SERVINGS_STRING, ignoreCase = true)
 
         try{
             count = JSONObject(foodItem).getJSONObject("servings").getJSONArray("serving").length()
@@ -45,19 +37,22 @@ class SearchResultsPagerAdapter(manager: FragmentManager) : androidx.fragment.ap
         var title = ""
         val foodItemJSON = JSONObject(foodItem)
 
+        /*
+        // Use if I need to include total serving amount
         try {
             title = "[${position + 1} of ${foodItemJSON.getJSONObject("servings")
                 .getJSONArray("serving").length()}] Servings"
         }catch (je: JSONException) {
             title = "${position + 1} of 1 Serving"
         }
+        */
+
+        title = "- ${position + 1} -"
 
         return title
     }
 
-    fun setJSONObject(instanceCode: Int, foodJSON : JSONObject){
+    fun setJSONObject(foodJSON : JSONObject){
        foodItem = foodJSON.toString()
-       this.instanceCode = instanceCode
-
     }
 }

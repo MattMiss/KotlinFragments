@@ -9,8 +9,14 @@ import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.view.Display
+import androidx.core.content.ContextCompat.getSystemService
+import android.view.WindowManager
+import android.opengl.ETC1.getWidth
+import org.json.JSONObject
 
-class CustomNoteListAdapter(var mCtx: Context, var resource:Int, var notes:List<String>)
+
+class CustomListAdapter(var mCtx: Context, var resource:Int, var notes:List<String>, var type : String)
     :ArrayAdapter<String>( mCtx , resource , notes ){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -19,17 +25,66 @@ class CustomNoteListAdapter(var mCtx: Context, var resource:Int, var notes:List<
 
         val view : View = layoutInflater.inflate(resource , null )
 
-        var textView : TextView = view.findViewById(R.id.label)
+        val textView : TextView = view.findViewById(R.id.label)
 
 
-        var note = notes[position]
-
+        val note = notes[position]
 
         textView.text = note
 
+        if (type.equals("direction")){
+            val lblDirectionNum : TextView = view.findViewById(R.id.lblNumber)
 
+            lblDirectionNum.text = "${position + 1}"
+        }
+
+        if (type.equals("ingredient")){
+
+            val tempJSON = JSONObject(notes[position])
+            val description = tempJSON.get("ingredient_description").toString()
+
+            val lblDirectionNum : TextView = view.findViewById(R.id.lblNumber)
+            val lblText : TextView = view.findViewById(R.id.label)
+
+            lblDirectionNum.text = "${position + 1}"
+            lblText.text = description
+
+            setItemHeight(description, textView)
+        }
+
+        if (type.equals("direction")){
+
+            val tempJSON = JSONObject(notes[position])
+            val description = tempJSON.get("direction_description").toString()
+
+            val lblDirectionNum : TextView = view.findViewById(R.id.lblNumber)
+            val lblText : TextView = view.findViewById(R.id.label)
+
+            lblDirectionNum.text = "${position + 1}"
+            lblText.text = description
+
+            setItemHeight(description, textView)
+        }
 
         return view
     }
+
+    fun setItemHeight(listItemText : String, textView : TextView){
+        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = wm.defaultDisplay
+        val screenWidth = display.width // Get full screen width
+        val eightyPercent = screenWidth * 80 / 100 // Calculate 80% of it
+        // as my adapter was having almost 80% of the whole screen width
+
+        val textWidth = textView.paint.measureText(listItemText)
+        // this method will give you the total width required to display total String
+
+
+        val numberOfLines = textWidth.toInt() / eightyPercent + 1
+        // calculate number of lines it might take
+
+        textView.setLines(numberOfLines)
+    }
+
 
 }

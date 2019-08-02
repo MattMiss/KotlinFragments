@@ -1,0 +1,76 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:id="@+id/linearLayout2">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/foodTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      tools:text="Title that could end up going onto two lines and making this view big"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent" android:id="@+id/foodTitleText" android:textSize="18sp"
+                      android:fontFamily="@font/poppins_semibold" android:paddingStart="20dp" android:paddingTop="6dp"
+                      android:paddingEnd="20dp" android:paddingBottom="6dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pagerConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+
+            <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+                <!-- Current + adjacent page titles...-->
+                <androidx.viewpager.widget.PagerTitleStrip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:textColor="#fff"
+                >
+                </androidx.viewpager.widget.PagerTitleStrip>
+
+            </androidx.viewpager.widget.ViewPager>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_save_black_24dp"
+            android:id="@+id/btnSaveFood" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" app:backgroundTint="@color/colorPrimary" app:maxImageSize="40dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true" app:srcCompat="@drawable/ic_cancel_black_24dp"
+            android:id="@+id/btnCancelFood" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:backgroundTint="@color/colorPrimary"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

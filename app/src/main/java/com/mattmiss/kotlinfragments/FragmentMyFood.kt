@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,10 +70,11 @@ class FragmentMyFood : androidx.fragment.app.Fragment() {
     private fun foodSaveClicked(savedItem : JSONObject) {
         val ft = activity!!.supportFragmentManager.beginTransaction()
 
-        val newFragment = SearchResultViewPagerParent.newInstance(2, savedItem)
+        val newFragment = SavedFoodViewPagerParent.newInstance(savedItem)
+        newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
+
         ft.addToBackStack("fragment_dialog")
         newFragment.show(ft, "fragment_dialog")
-
 
     }
 }

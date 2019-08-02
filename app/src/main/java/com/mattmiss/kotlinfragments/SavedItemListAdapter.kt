@@ -20,7 +20,7 @@ class SavedItemListAdapter internal constructor(context: Context, val clickListe
 
     inner class SavedItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         override fun onClick(v: View?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
         }
         private var view: View = itemView
         private var savedItem: JSONObject? = null

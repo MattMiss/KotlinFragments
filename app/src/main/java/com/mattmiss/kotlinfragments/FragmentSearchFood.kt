@@ -1,5 +1,6 @@
 package com.mattmiss.kotlinfragments
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest
 import com.fatsecret.platform.services.RequestBuilder
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.DialogFragment
 import com.android.volley.RequestQueue
 import kotlin.collections.ArrayList
 
@@ -31,7 +33,8 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
     private lateinit var builder: RequestBuilder
 
 
-    var foodArrayList = ArrayList<JSONObject>()
+    var searchResultsArrayList = ArrayList<JSONObject>()
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -39,12 +42,12 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
         queue = Volley.newRequestQueue(context)
 
         builder = RequestBuilder(key, secret)
-        linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
         recyclerView.layoutManager = linearLayoutManager
 
         // Add the adapter which is using the JSONList returned from api call
         // and the Clicklistener which calls the foodItemClicked method
-        adapter = SearchResultsAdapter(foodArrayList, { foodSave: JSONObject -> foodItemClicked(foodSave)})
+        adapter = SearchResultsAdapter(searchResultsArrayList, { foodSave: JSONObject, resultCode : Int -> foodItemClicked(foodSave, resultCode)})
         recyclerView.adapter = adapter
 
         // Add a line in between each item
@@ -67,6 +70,16 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
                 false
             }
         }
+
+        radioBtnFoodProduct.setOnClickListener{
+            searchFood.hint = "Enter Food or Product name"
+        }
+
+        radioBtnRecipe.setOnClickListener{
+            searchFood.hint = "Enter Recipe name"
+        }
+
+        radioBtnFoodProduct.isChecked = true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -84,17 +97,23 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
 
 
     fun searchClick(){
-        //Toast.makeText(getActivity(),service.getFood(4384).toString(),Toast.LENGTH_SHORT).show()
+        //Toast.makeText(getActivity(),service.searchFood(4384).toString(),Toast.LENGTH_SHORT).show()
 
         val search = searchFood.text
 
         // for testing
-        //getFood("Beef")
-        // if the search is not empty, call the getFood method
+        //searchFood("Beef")
+        // if the search is not empty, call the searchFood method
         if (search.isNotEmpty()){
-            foodArrayList.clear()
-            // Use the search text
-            getFood(search.toString())
+            searchResultsArrayList.clear()
+
+            if (radioBtnFoodProduct.isChecked){
+                // Use the search text
+                searchFood(search.toString())
+            }else{
+                searchRecipe(search.toString())
+            }
+
         }
 
         // Minimizes the keyboard after hitting Search
@@ -103,7 +122,7 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
 
     }
 
-    private fun getFood(query: String) {
+    private fun searchFood(query: String) {
         object : AsyncTask<String, String, String>() {
             override fun doInBackground(vararg arg0: String): String {
 
@@ -178,7 +197,7 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
                         val responseJSON = JSONObject(response.toString())
 
                         // get the "foods" object ("foods" is the only object anyways
-                        foodArrayList.add(responseJSON.getJSONObject("food"))
+                        searchResultsArrayList.add(responseJSON.getJSONObject("food"))
                         adapter.notifyDataSetChanged()
 
                     },
@@ -204,16 +223,141 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
     }
 
 
-    private fun foodItemClicked(foodSave : JSONObject) {
+    private fun searchRecipe(query: String) {
+        object : AsyncTask<String, String, String>() {
+            override fun doInBackground(vararg arg0: String): String {
+
+                val url = builder.buildRecipesSearchUrl(query, 1)
+                // Request a string response from the provided URL.
+                val stringRequest = StringRequest(
+                    com.android.volley.Request.Method.GET, url,
+                    com.android.volley.Response.Listener<String> { response ->
+
+                        // Get the entire JSON object in one long line
+                        val responseJSON = JSONObject(response.toString())
+
+                        // Prints out the super long recipe response
+                        longInfo(responseJSON.toString())
+
+                        // get the "foods" object ("foods" is the only object anyways
+                        val recipeJSON = responseJSON.getJSONObject("recipes")
+
+                        // Get the array inside of foods. usually around 20-50 long
+                        val recipeArray = recipeJSON.getJSONArray("recipe")
+
+                        val arrayLength = recipeArray.length()
+                        var x = 1
+
+                        // Use arrayLength for full amount of fooditems
+                        // Or use a custom number
+                        while (x < MAX_RESULTS){
+                            val recipe = recipeArray.getJSONObject(x)
+                            val recipeID = recipe.get("recipe_id")
+
+                            getRecipeFromID(recipeID.toString())
+                            x++
+                        }
+
+                    },
+                    com.android.volley.Response.ErrorListener { error ->
+                        // Handle error
+                        Log.e("Error", "ERROR: %s".format(error.toString()))
+                    })
+                queue.add(stringRequest)
+
+                return ""
+            }
+
+            override fun onPostExecute(result: String) {
+                super.onPostExecute(result)
+                if (result == "Error")
+                    Toast.makeText(activity, "No Items Containing Your Search", Toast.LENGTH_SHORT).show()
+
+            }
+        }.execute()
+    }
+
+    private fun getRecipeFromID(recipeID: String) {
+
+        object : AsyncTask<String, String, String>() {
+
+            override fun doInBackground(vararg arg0: String): String {
+
+                val url = builder.buildRecipeGetUrl(recipeID.toLong())
+
+
+                println(builder.buildFoodGetUrl(recipeID.toLong()).toString())
+
+                Log.i("Getting Response", "Now")
+                // Request a string response from the provided URL.
+                val stringRequest = StringRequest(
+                    com.android.volley.Request.Method.GET, url,
+                    com.android.volley.Response.Listener<String> { response ->
+
+                        // Get the entire JSON object in one long line
+                        val responseJSON = JSONObject(response.toString())
+
+                        longInfo(responseJSON.toString())
+
+                        // get the "foods" object ("foods" is the only object anyways
+                        searchResultsArrayList.add(responseJSON.getJSONObject("recipe"))
+                        adapter.notifyDataSetChanged()
+
+                    },
+                    com.android.volley.Response.ErrorListener { error ->
+                        // Handle error
+                        Log.e("Error", "ERROR: %s".format(error.toString()))
+                    })
+                queue.add(stringRequest)
+
+                return ""
+            }
+
+            override fun onPostExecute(result: String) {
+                super.onPostExecute(result)
+                if (result == "Error")
+                    Toast.makeText(activity, "No Items Containing Your Search", Toast.LENGTH_SHORT).show()
+
+
+            }
+
+        }.execute()
+
+    }
+
+
+    private fun foodItemClicked(foodOrRecipeSave : JSONObject, resultCode : Int) {
         val ft = activity!!.supportFragmentManager.beginTransaction()
 
-        val newFragment = SearchResultViewPagerParent.newInstance(1, foodSave)
-        ft.addToBackStack("fragment_dialog")
-        newFragment.show(ft, "fragment_dialog")
+
+        // If this works, take out the if/else
+        if (resultCode == 1){
+            val newFragment = SearchResultViewPagerParent.newInstance(foodOrRecipeSave, resultCode)
+            newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
+
+            ft.addToBackStack("fragment_dialog")
+            newFragment.show(ft, "fragment_dialog")
+        }else if(resultCode == 2){
+            val newFragment = SearchResultViewPagerParent.newInstance(foodOrRecipeSave, resultCode)
+            newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
+
+            ft.addToBackStack("fragment_dialog")
+            newFragment.show(ft, "fragment_dialog")
+        }else{
+            Toast.makeText(activity!!, "Something went wrong!", Toast.LENGTH_SHORT).show()
+        }
 
 
     }
 
+
+    fun longInfo(str: String) {
+        if (str.length > 4000) {
+            Log.i(TAG, str.substring(0, 4000))
+            longInfo(str.substring(4000))
+        } else
+            Log.i(TAG, str)
+    }
 
 
 

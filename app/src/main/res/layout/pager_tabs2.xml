@@ -1,0 +1,552 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" android:id="@+id/linearLayout2"
+>
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:paddingStart="10dp" android:paddingTop="6dp"
+            android:paddingEnd="10dp" android:paddingBottom="6dp" android:scrollbarStyle="insideInset"
+            android:scrollbarSize="3dp" android:id="@+id/scrollView">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="10dp" android:layout_marginEnd="10dp">
+
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblAddNoteName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" android:textColor="#000000"
+                        android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/poppins_semibold" android:textSize="16sp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividers" android:id="@+id/divider1" android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp" android:layout_marginBottom="5dp">
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
+
+                <TextView
+                        android:text="Category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblCategory"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="18sp" android:fontFamily="@font/poppins" android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+                <Spinner
+                        android:entries="@array/category_arrays"
+                        android:prompt="@string/category_prompt"
+                        style="@android:style/Widget.Spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" android:id="@+id/categorySpinner"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lblCategory" android:layout_marginStart="8dp"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp" android:layout_marginEnd="8dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" android:layout_marginEnd="10dp">
+
+                <TextView
+                        android:text="Rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblRating"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="18sp" android:fontFamily="@font/poppins" android:layout_marginStart="8dp"
+                />
+                <TextView
+                        android:text="(Optional)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblRatingOptional"
+                        android:textSize="12sp" android:fontFamily="@font/poppins"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/lblRating"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="26dp"/>
+                <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/ratingBar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lblRating"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintVertical_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/lblRatingOptional"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnRatingCancel"
+                        android:scaleX=".9" android:scaleY=".9"
+                        style="@style/Widget.AppCompat.RatingBar" android:isIndicator="false"
+                        android:indeterminate="false"/>
+                <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="0dp"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                        android:id="@+id/btnRatingCancel" android:tint="@color/colorPrimary"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                        app:layout_constraintBottom_toBottomOf="@+id/ratingBar" android:scaleType="fitCenter"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ratingsLine" android:layout_marginStart="8dp"/>
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:id="@+id/ratingsLine" app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+                        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+                        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                        app:layout_constraintTop_toTopOf="@+id/ratingBar" android:layout_marginTop="22dp"
+                        android:layout_marginBottom="30dp" android:clickable="false" android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" android:background="#A4000000"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/servingAmountHeader">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerLeft1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/lblServings" android:layout_marginStart="10dp"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                        android:text="Servings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblServings"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="4dp" android:textSize="16sp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerRight1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/lblServings"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
+                        android:layout_marginStart="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp" android:id="@+id/linearLayout3">
+
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="20dp"
+
+                >
+
+                    <!-- Current + adjacent page titles...-->
+                    <androidx.viewpager.widget.PagerTitleStrip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="#000000"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:textSize="18sp"
+                    >
+                    </androidx.viewpager.widget.PagerTitleStrip>
+
+                </androidx.viewpager.widget.ViewPager>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/notesBtnLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerLeft2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/lblNotes" android:layout_marginStart="10dp"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                        android:text="Notes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblNotes"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="4dp" android:textSize="16sp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerRight2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/lblNotes"
+                        android:layout_marginStart="4dp" app:layout_constraintEnd_toStartOf="@id/arrowBtn1"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/ic_arrow_drop_up_black_24dp"
+                        android:id="@+id/arrowBtn1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/dividerRight2" android:layout_marginTop="4dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                    android:id="@+id/expandableLayout_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/expandableButton_notes"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:orientation="vertical"
+                    app:ael_duration="100"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
+
+                <ListView
+                        android:id="@+id/noteList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/note_list_view"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="20dp" android:layout_marginStart="10dp"
+                        style="@style/Widget.AppCompat.ListView" android:divider="@android:color/transparent"
+                        android:headerDividersEnabled="false"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                                   android:layout_height="wrap_content">
+                    <EditText
+                            android:id="@+id/add_note_entry"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Type note"
+                            android:inputType="textMultiLine"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/addNoteBtnLayout" android:layout_marginTop="4dp"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="16sp"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp" app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/add_note_entry"
+                            android:id="@+id/addNoteBtnLayout">
+
+                        <ImageButton
+                                android:layout_width="60dp"
+                                android:layout_height="40dp"
+                                android:id="@+id/btnAddNote"
+                                android:background="@drawable/button_rounded_toggle"
+                                android:src="@drawable/ic_add_black_40dp"
+                                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:drawablePadding="40dp"
+                        />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tagsBtnLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerLeft3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/lblTags" android:layout_marginStart="10dp"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                        android:text="Tags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblTags"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="4dp" android:textSize="16sp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerRight3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/lblTags"
+                        android:layout_marginStart="4dp" app:layout_constraintEnd_toStartOf="@id/arrowBtn2"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/ic_arrow_drop_up_black_24dp"
+                        android:id="@+id/arrowBtn2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/dividerRight3" android:layout_marginTop="4dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                    android:id="@+id/expandableLayout_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/expandableButton_tags"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:orientation="vertical"
+                    app:ael_duration="100"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
+
+                <ListView
+                        android:id="@+id/tagList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/tag_list_view"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp" android:layout_marginEnd="20dp"
+                        android:divider="@android:color/transparent"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                                   android:layout_height="wrap_content">
+                    <EditText
+                            android:id="@+id/add_tag_entry"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Type a tag"
+                            android:inputType="textMultiLine"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/addTagBtnLayout" android:layout_marginTop="4dp"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="16sp"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/add_tag_entry"
+                            android:id="@+id/addTagBtnLayout">
+
+                        <ImageButton
+                                android:layout_width="60dp"
+                                android:layout_height="40dp"
+                                android:id="@+id/btnAddTag"
+                                android:background="@drawable/button_rounded_toggle"
+                                android:src="@drawable/ic_add_black_40dp"
+                                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:drawablePadding="40dp"
+                        />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/directionsBtnLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerLeft4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/lblDirections" android:layout_marginStart="10dp"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                        android:text="Directions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblDirections"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="4dp" android:textSize="16sp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/dividers" android:id="@+id/dividerRight4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/lblDirections"
+                        android:layout_marginStart="4dp" app:layout_constraintEnd_toStartOf="@id/arrowBtn3"
+                        android:layout_marginEnd="4dp">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/ic_arrow_drop_up_black_24dp"
+                        android:id="@+id/arrowBtn3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/dividerRight4" android:layout_marginTop="4dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                    android:id="@+id/expandableLayout_directions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/expandableButton_directions"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:orientation="vertical"
+                    app:ael_duration="100"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical" android:layout_marginBottom="80dp">
+
+                <ListView
+                        android:id="@+id/directionList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/note_list_view"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="10dp" android:layout_marginEnd="20dp"
+                        android:divider="@android:color/transparent"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                                   android:layout_height="wrap_content">
+                    <EditText
+                            android:id="@+id/add_direction_entry"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:hint="Type a direction"
+                            android:inputType="textMultiLine"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/addDirectionBtnLayout"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="16sp"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/add_direction_entry"
+                            android:id="@+id/addDirectionBtnLayout">
+
+                        <ImageButton
+                                android:layout_width="60dp"
+                                android:layout_height="40dp"
+                                android:id="@+id/btnAddDirection"
+                                android:background="@drawable/button_rounded_toggle"
+                                android:src="@drawable/ic_add_black_40dp"
+                                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:drawablePadding="40dp"
+                        />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true" app:srcCompat="@drawable/ic_save_black_24dp"
+            android:id="@+id/btnSaveFood" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" app:backgroundTint="@color/colorPrimary" app:maxImageSize="40dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true" app:srcCompat="@drawable/ic_cancel_black_24dp"
+            android:id="@+id/btnCancelFood" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:backgroundTint="@color/colorPrimary"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

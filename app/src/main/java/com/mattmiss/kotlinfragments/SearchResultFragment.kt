@@ -80,20 +80,7 @@ class SearchResultFragment : androidx.fragment.app.Fragment() {
 
         savedItemViewModel = ViewModelProviders.of(this).get(SavedItemViewModel::class.java)
 
-        buttonCancel.setOnClickListener{
 
-            var prev = activity!!.supportFragmentManager.findFragmentByTag("fragment_dialog") as androidx.fragment.app.DialogFragment
-
-            if (prev != null) {
-                val df = prev
-                df.dismiss()
-            }
-        }
-
-        buttonAccept.setOnClickListener{
-            val savedItem = SavedItem(foodJSON.toString())
-            savedItemViewModel.insert(savedItem)
-        }
     }
 
 
@@ -176,7 +163,6 @@ class SearchResultFragment : androidx.fragment.app.Fragment() {
             textViewTotalFatSize.text = " "
         }
         if (containsFiber){
-            println("6!")
             textViewFiberAmount.text = servingCheckJSON.getString(FIBER_STRING)
         }else{
             textViewFiberAmount.text = NO_VALUE_STRING
@@ -205,7 +191,6 @@ class SearchResultFragment : androidx.fragment.app.Fragment() {
         }
 
         if (containsMonoUnsaturatedFat){
-            println("11!")
             textViewMonounsaturatedAmount.text = servingCheckJSON.getString(MONOUNSATURATED_FAT_STRING)
         }else{
             textViewMonounsaturatedAmount.text = NO_VALUE_STRING
@@ -271,4 +256,6 @@ class SearchResultFragment : androidx.fragment.app.Fragment() {
             textViewVitaminCSize.text = " "
         }
     }
+
+
 }

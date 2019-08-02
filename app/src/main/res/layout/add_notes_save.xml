@@ -1,7 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="350dp"
+                                                   android:layout_height="600dp" android:layout_gravity="center">
 
-</LinearLayout>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/scrollView2"
+            android:layout_marginBottom="160dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:background="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblAddNoteName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" android:textColor="#FFFFFF"
+                        android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/poppins"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblCategory"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="18sp" android:fontFamily="@font/poppins" android:layout_marginStart="8dp"/>
+                <Spinner
+                        android:entries="@array/category_arrays"
+                        android:prompt="@string/category_prompt"
+                        style="@android:style/Widget.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/categorySpinner"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+                        app:layout_constraintTop_toBottomOf="@+id/lblCategory" android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            >
+
+                <TextView
+                        android:text="Rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblRating"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="18sp" android:fontFamily="@font/poppins" android:layout_marginStart="8dp"/>
+                <TextView
+                        android:text="(Optional)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/lblRatingOptional"
+                        android:textSize="12sp" android:fontFamily="@font/poppins"
+                        app:layout_constraintStart_toEndOf="@+id/lblRating" android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblRating"
+                        android:layout_marginBottom="3dp"/>
+                <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/ratingBar"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lblRating"
+                        android:layout_marginTop="8dp" android:layout_marginStart="32dp"
+                        android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.514"
+                        app:layout_constraintVertical_bias="1.0"/>
+                <ImageButton
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                        android:id="@+id/btnRatingCancel" android:tint="@color/colorPrimary"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                        app:layout_constraintBottom_toBottomOf="@+id/ratingBar" android:scaleType="fitCenter"
+                        app:layout_constraintHorizontal_bias="0.6" android:layout_marginBottom="4dp"/>
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp" app:srcCompat="@drawable/button_checked"
+                        android:id="@+id/ratingsLine" app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+                        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+                        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                        app:layout_constraintTop_toTopOf="@+id/ratingBar" android:layout_marginTop="22dp"
+                        android:layout_marginBottom="30dp" android:clickable="false"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                    android:id="@+id/expandableButton_notes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:background="#9066041a"
+                    android:drawableRight="@android:drawable/arrow_down_float"
+                    android:paddingRight="10dp"
+                    android:text="Notes"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#FFFFFF"/>
+
+
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                    android:id="@+id/expandableLayout_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/expandableButton_notes"
+                    android:background="@android:color/transparent"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    app:ael_duration="100"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
+
+                <ListView
+                        android:id="@+id/noteList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/note_list_view"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"/>
+
+                <EditText
+                        android:id="@+id/add_note_entry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:hint="Type note"
+                        android:inputType="textMultiLine"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"/>
+
+                <Button
+                        android:text="Note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnAddNote"
+                        android:textSize="12sp"
+                        android:layout_below="@+id/add_note_entry"
+                        android:drawableStart="@drawable/ic_add_black_24dp" android:layout_gravity="end"/>
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <Button
+                    android:id="@+id/expandableButton_tags"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:background="#9066041a"
+                    android:drawableRight="@android:drawable/arrow_down_float"
+                    android:paddingRight="10dp"
+                    android:text="Tags"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#fff"/>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                    android:id="@+id/expandableLayout_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/expandableButton_tags"
+                    android:background="@android:color/transparent"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    app:ael_duration="100"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
+
+                <ListView
+                        android:id="@+id/tagList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/note_list_view"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"/>
+
+                <EditText
+                        android:id="@+id/add_tag_entry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:hint="Type tag"
+                        android:inputType="textMultiLine"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"/>
+
+                <Button
+                        android:text="Tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnAddTag"
+                        android:textSize="12sp"
+                        android:layout_below="@+id/add_tag_entry"
+                        android:drawableStart="@drawable/ic_add_black_24dp" android:textAlignment="center"
+                        android:layout_gravity="end"/>
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+            <Button
+                    android:id="@+id/expandableButton_directions"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#9066041a"
+                    android:drawableRight="@android:drawable/arrow_down_float"
+                    android:paddingRight="10dp"
+                    android:text="Directions"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#fff"/>
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                    android:id="@+id/expandableLayout_directions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/expandableButton_directions"
+                    android:background="@android:color/transparent"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    app:ael_duration="100"
+                    app:ael_expanded="true"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
+
+                <ListView
+                        android:id="@+id/directionList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/directions_list_view"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"/>
+
+                <EditText
+                        android:id="@+id/add_direction_entry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:hint="Type a direction"
+                        android:inputType="textMultiLine"
+                        android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"/>
+
+                <Button
+                        android:text="Direction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnAddDirection"
+                        android:textSize="10sp"
+                        android:layout_below="@+id/add_direction_entry"
+                        android:drawableStart="@drawable/ic_add_black_24dp" android:textAlignment="center"
+                        android:layout_gravity="end"/>
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true" app:srcCompat="@drawable/ic_save_black_24dp"
+            android:id="@+id/btnFinalSaveFood"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
