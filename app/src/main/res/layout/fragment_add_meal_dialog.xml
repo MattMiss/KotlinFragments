@@ -1,0 +1,154 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.mattmiss.kotlinfragments.fragments.FragmentMyFood">
+
+
+    <ImageView
+            android:id="@+id/firstFragmentImageView2"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/applebg"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.mattmiss.kotlinfragments.fragments.FragmentSearchFood"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guidelineTop"
+                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/dateLayout">
+
+            <TextView
+                    android:text="Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/date" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#FFFFFF" android:fontFamily="@font/poppins_semibold" android:textSize="24sp"
+            />
+            <Button
+                    android:text="Choose Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnChooseDate"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:background="@drawable/button_rounded"
+                    android:paddingStart="8dp" android:paddingEnd="8dp" android:textColor="#FFFFFF"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:layout_constraintTop_toTopOf="@id/guidelineTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guidelineTopTwo"
+                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/mealLayout">
+
+            <TextView
+                    android:text="Meal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mealText" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#FFFFFF" android:fontFamily="@font/poppins_semibold" android:textSize="20sp"
+            />
+            <Button
+                    android:text="Add Food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnChooseMeal"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:background="@drawable/button_rounded"
+                    android:paddingStart="8dp" android:paddingEnd="8dp" android:textColor="#FFFFFF"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:layout_constraintTop_toTopOf="@id/guidelineTopTwo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guidelineTopThree"
+                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/addBtnLayout">
+
+            <Button
+                    android:text="Add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnAddChoice"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:background="@drawable/button_rounded"
+                    android:paddingStart="8dp" android:paddingEnd="8dp" android:textColor="#FFFFFF"
+                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@id/guidelineTopThree"
+                android:id="@+id/recyclerLayout" app:layout_constraintBottom_toTopOf="@id/guidelineBottom">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="start|top"
+                    android:ems="10"
+                    android:id="@+id/recyclerMealsChosen"
+                    android:background="@drawable/button"
+                    tools:listitem="@layout/food_or_recipe_item"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp">
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp" app:layout_constraintTop_toBottomOf="@id/guidelineBottom"
+                android:id="@+id/buttonLayout" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                    android:text="Done"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" android:id="@+id/btnDone"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:background="@drawable/button"
+                    android:layout_marginTop="8dp" android:textSize="24sp" android:fontFamily="@font/poppins_semibold"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintGuide_percent=".9"
+                android:id="@+id/guidelineBottom"
+        />
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintGuide_percent=".1"
+                android:id="@+id/guidelineTop"
+        />
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintGuide_percent=".2"
+                android:id="@+id/guidelineTopTwo"
+        />
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintGuide_percent=".3"
+                android:id="@+id/guidelineTopThree"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

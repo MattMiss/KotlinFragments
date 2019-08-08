@@ -1,0 +1,99 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context="com.mattmiss.kotlinfragments.fragments.FragmentSearchFood">
+
+                                                   <?ignore
+                                                           this is only if i use the toolbar on main.activity.xml
+                                                   android:layout_marginTop="?attr/actionBarSize"?>
+
+
+    <ImageView
+            android:id="@+id/firstFragmentImageView"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/applebg"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp" android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                android:id="@+id/constraintLayout" android:background="@drawable/button">
+
+            <TextView
+                    android:text="Search Type:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="8dp"/>
+            <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView" android:orientation="horizontal"
+                    android:layout_marginTop="4dp" android:layout_marginBottom="4dp">
+                <RadioButton
+                        android:text="Food / Product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/radioBtnFoodProduct" android:layout_weight="1"
+                        android:fontFamily="@font/poppins"/>
+                <RadioButton
+                        android:text="Recipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/radioBtnRecipe" android:layout_weight="1"
+                        android:layout_marginStart="16dp" android:fontFamily="@font/poppins"
+                        android:layout_marginEnd="16dp"/>
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/searchFood" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#000000"
+                android:background="@drawable/button" android:hint="Enter Food or Product name" android:paddingTop="8dp"
+                android:paddingLeft="4dp" android:paddingBottom="4dp"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+                android:fontFamily="@font/poppins"/>
+        <Button
+                android:text="@android:string/search_go"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchButton"
+                android:background="@drawable/button_toggle"
+                app:layout_constraintTop_toBottomOf="@+id/searchFood" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold" android:gravity="center"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="start|top"
+                android:ems="10"
+                android:id="@+id/recyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/searchButton" android:background="@drawable/button"
+                android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="32dp"  android:layout_marginBottom="16dp"
+                tools:listitem="@layout/search_result_item">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

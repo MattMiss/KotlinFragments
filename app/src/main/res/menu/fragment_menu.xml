@@ -3,11 +3,16 @@
     <item
             android:id="@+id/firstFragmentItem"
             android:title="@string/first_fragment"
-            android:icon="@drawable/ic_action_image1"
+            android:icon="@drawable/ic_search_36"
     />
     <item
-            android:id="@+id/secondFragmentItem"
-            android:title="@string/second_fragment"
-            android:icon="@drawable/ic_action_two"
+        android:id="@+id/secondFragmentItem"
+        android:title="@string/second_fragment"
+        android:icon="@drawable/ic_food_36"
+    />
+    <item
+            android:id="@+id/thirdFragmentItem"
+            android:title="@string/third_fragment"
+            android:icon="@drawable/ic_meals_36"
     />
 </menu>

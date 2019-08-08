@@ -7,7 +7,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MainActivity">
+    tools:context=".activities.MainActivity">
 
 <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,17 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
     </FrameLayout>
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fragmentContainer"
-            app:menu="@menu/fragment_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

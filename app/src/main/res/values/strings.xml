@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Matts Food</string>
     <string name="first_fragment">Search for Food</string>
-    <string name="second_fragment">My Saved Food</string>
+    <string name="second_fragment">Saved Food</string>
+    <string name="third_fragment">My Meals</string>
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_test">TestActivity</string>

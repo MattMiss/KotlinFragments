@@ -14,8 +14,7 @@
             android:networkSecurityConfig="@xml/network_security_config"
             >
 
-        <activity android:name=".MainActivity"
-                  android:windowSoftInputMode="stateVisible|adjustPan">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
