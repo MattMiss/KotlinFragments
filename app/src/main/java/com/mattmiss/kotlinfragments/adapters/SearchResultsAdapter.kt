@@ -1,7 +1,5 @@
 package com.mattmiss.kotlinfragments.adapters
 
-import android.graphics.Color
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +8,7 @@ import org.json.JSONObject
 import com.mattmiss.kotlinfragments.R
 import com.mattmiss.kotlinfragments.inflate
 import kotlinx.android.synthetic.main.search_result_item.view.*
-import kotlinx.android.synthetic.main.search_result_item.*
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import com.mattmiss.kotlinfragments.utils.Utils
 import org.json.JSONArray
 import org.json.JSONException
@@ -114,7 +110,7 @@ class SearchResultsAdapter(private val foodItem : ArrayList<JSONObject>, val cli
                     }
 
                 if  (foodSave.toString().contains("brand")){
-                    view.icon.setImageResource(R.drawable.ic_product_36)
+                    view.icon.setImageResource(R.drawable.ic_brandicon)
                 }
                     // Set the click listener to the listener provided in the constructor
                     view.setOnClickListener { clickListener(foodSave,
@@ -125,7 +121,7 @@ class SearchResultsAdapter(private val foodItem : ArrayList<JSONObject>, val cli
                     view.labelName.text = foodSave.getString("recipe_name")
                     view.labelDescription.text = foodSave.getString("recipe_description")
 
-                    view.icon.setImageResource(R.drawable.ic_recipe_36)
+                    view.icon.setImageResource(R.drawable.ic_recipeicon)
 
                     // Set the click listener to the listener provided in the constructor
                     view.setOnClickListener { clickListener(foodSave,

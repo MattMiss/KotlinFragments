@@ -34,7 +34,7 @@ class SavedItemListAdapter internal constructor(context: Context, val clickListe
             if (savedItem.toString().contains("recipe")){
                 view.labelName.text = savedItem.getString("recipe_name")
                 view.labelDescription.text = savedItem.getString("recipe_description")
-                view.icon.setImageResource(R.drawable.ic_recipe_36)
+                view.icon.setImageResource(R.drawable.ic_recipeicon)
 
                 foodOrRecipe = "recipe"
             }else {
@@ -42,7 +42,7 @@ class SavedItemListAdapter internal constructor(context: Context, val clickListe
                 view.labelDescription.text = savedItem.getString("food_type")
 
                 if (savedItem.toString().contains("brand")){
-                    view.icon.setImageResource(R.drawable.ic_product_36)
+                    view.icon.setImageResource(R.drawable.ic_brandicon)
                 }
                 foodOrRecipe = "food"
             }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.mattmiss.kotlinfragments.adapters.FoodPagerAdapter
 import com.mattmiss.kotlinfragments.R
 import com.mattmiss.kotlinfragments.adapters.RecipePagerAdapter
@@ -68,10 +69,12 @@ class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
 
         if (resultCode == 1){
             val newFragment = AddNotesBeforeFoodSave.newInstance(foodSave)
+            newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
             ft.addToBackStack("fragment_foodSave_dialog")
             newFragment.show(ft, "fragment_foodSave_dialog")
         }else if(resultCode == 2){
             val newFragment = AddNotesBeforeRecipeSave.newInstance(foodSave)
+            newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
             ft.addToBackStack("fragment_recipeSave_dialog")
             newFragment.show(ft, "fragment_recipeSave_dialog")
         }
