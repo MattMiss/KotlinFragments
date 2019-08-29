@@ -1,6 +1,8 @@
 package com.mattmiss.kotlinfragments.fragments
 
 import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -52,6 +54,8 @@ class SavedFoodViewPagerParent : androidx.fragment.app.DialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         //Its actually using FoodPagerAdapter here but the name didn't change for some reason
         val adapter = FoodPagerAdapter(childFragmentManager)
         val foodJSON = JSONObject(arguments?.getString("foodJSON"))
@@ -81,9 +85,32 @@ class SavedFoodViewPagerParent : androidx.fragment.app.DialogFragment(){
         savedItemViewModel = ViewModelProviders.of(this).get(SavedItemViewModel::class.java)
 
         btnCancelFood.setOnClickListener{
-            val tempSavedItem = SavedItem(arguments?.getString("foodJSON")!!)
-            savedItemViewModel.deleteFood(tempSavedItem)
-            dismiss()
+
+            val builder = AlertDialog.Builder(activity)
+
+            // Display a message on alert dialog
+            builder.setMessage("Delete?")
+
+            // Set a positive button and its click listener on alert dialog
+            builder.setPositiveButton("Delete"){dialog, which ->
+
+                // Do something when user press the positive button
+                val tempSavedItem = SavedItem(arguments?.getString("foodJSON")!!)
+                savedItemViewModel.deleteFood(tempSavedItem)
+                dismiss()
+            }
+
+            // Display a neutral button on alert dialog
+            builder.setNeutralButton("Cancel"){_,_ ->
+
+            }
+
+            // Finally, make the alert dialog using builder
+            val dialog: AlertDialog = builder.create()
+
+            // Display the alert dialog on app interface
+            dialog.show()
+
         }
 
         btnSaveFood.setOnClickListener{

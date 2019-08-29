@@ -24,7 +24,6 @@ import com.mattmiss.kotlinfragments.adapters.SearchResultsAdapter
 import com.mattmiss.kotlinfragments.database.Category
 import com.mattmiss.kotlinfragments.models.SavedItemViewModel
 import kotlin.collections.ArrayList
-import android.view.View.OnFocusChangeListener
 import com.mattmiss.kotlinfragments.utils.Utils
 
 
@@ -54,19 +53,19 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
 
         builder = RequestBuilder(key, secret)
         linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
-        recyclerView.layoutManager = linearLayoutManager
+        warningRecycler.layoutManager = linearLayoutManager
 
         // Add the adapter which is using the JSONList returned from api call
         // and the Clicklistener which calls the foodItemClicked method
         adapter = SearchResultsAdapter(
             searchResultsArrayList,
             { foodSave: JSONObject, resultCode: Int -> foodItemClicked(foodSave, resultCode) })
-        recyclerView.adapter = adapter
+        warningRecycler.adapter = adapter
 
         // Add a line in between each item
-        recyclerView.addItemDecoration(
+        warningRecycler.addItemDecoration(
             androidx.recyclerview.widget.DividerItemDecoration(
-                recyclerView.context,
+                warningRecycler.context,
                 androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
             )
         )

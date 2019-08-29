@@ -85,7 +85,6 @@ class ChooseMealDialogFragment : androidx.fragment.app.DialogFragment() {
         }
 
 
-
     }
 
 

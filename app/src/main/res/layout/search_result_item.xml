@@ -188,7 +188,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labels"
-                    android:orientation="horizontal" android:id="@+id/recyclerView" android:layout_marginTop="0dp"/>
+                    android:orientation="horizontal" android:id="@+id/warningRecycler" android:layout_marginTop="0dp"/>
 
 
 

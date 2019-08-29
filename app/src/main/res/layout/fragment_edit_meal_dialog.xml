@@ -40,87 +40,26 @@
                     android:textColor="#000000" android:fontFamily="@font/poppins_semibold" android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp" app:layout_constraintTop_toTopOf="@id/guidelineTop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/guidelineTopTwo"
-                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/mealLayout"
-                android:background="@drawable/button" android:layout_marginTop="8dp" android:layout_marginBottom="8dp">
-
-            <TextView
-                    android:text="Choose Meal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mealText" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textColor="#000000" android:fontFamily="@font/poppins_semibold" android:textSize="20sp"
-            />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp" app:layout_constraintTop_toTopOf="@id/guidelineTopTwo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/guidelineTopFour" android:id="@+id/amountLayout"
-                android:background="@drawable/button" android:layout_marginTop="8dp" android:layout_marginBottom="8dp">
+                android:layout_width="363dp"
+                android:layout_height="168dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guidelineTop"
+                app:layout_constraintBottom_toTopOf="@+id/guidelineTopFour" android:id="@+id/pieLayout"
+                android:layout_marginBottom="8dp" android:layout_marginTop="8dp">
 
-            <androidx.constraintlayout.widget.Guideline
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/guidelineAmountVertical"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintGuide_percent=".65"
-            />
-            <TextView
-                    android:text="Amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/lblAmount" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textColor="#000000" android:fontFamily="@font/poppins_semibold" android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/servingAmountWholeNumber" android:layout_marginEnd="8dp"/>
-
-
-            <NumberPicker
-                    android:id="@+id/servingAmountWholeNumber"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintStart_toEndOf="@+id/lblAmount"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/servingAmountFractionNumber"
-            >
-
-            </NumberPicker>
-
-            <NumberPicker
-                    android:id="@+id/servingAmountFractionNumber"
-                    android:layout_width="0dp" android:layout_height="0dp"
-                    app:layout_constraintStart_toEndOf="@+id/servingAmountWholeNumber"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guidelineAmountVertical"
-                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp">
-            </NumberPicker>
-
-            <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spinnerServingSize" app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/guidelineAmountVertical"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                    android:theme="@style/ThemeOverlay.AppCompat.Light"
-                    android:overlapAnchor="false"
-                    android:gravity="end" android:popupBackground="@drawable/button"/>
-
+            <lecho.lib.hellocharts.view.PieChartView android:layout_width="match_parent"
+                                                     android:layout_height="wrap_content"
+                                                     android:id="@+id/pieChartNutrients"
+                                                     app:layout_constraintTop_toTopOf="parent"
+                                                     app:layout_constraintBottom_toBottomOf="parent"
+                                                     app:layout_constraintStart_toStartOf="parent"
+                                                     app:layout_constraintEnd_toEndOf="parent"
+                                                     android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+                                                     android:layout_marginStart="8dp" android:layout_marginEnd="8dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp" app:layout_constraintTop_toTopOf="@id/guidelineTopFour"
