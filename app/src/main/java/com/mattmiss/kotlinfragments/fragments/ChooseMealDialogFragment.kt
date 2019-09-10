@@ -55,7 +55,7 @@ class ChooseMealDialogFragment : androidx.fragment.app.DialogFragment() {
 
         val adapter = SavedItemListAdapter(
             context!!,
-            { savedItem: JSONObject -> foodItemChosen(savedItem) })
+            { savedItem: JSONObject, resultCode: Int -> foodItemChosen(savedItem) })
 
         recyclerview.adapter = adapter
 

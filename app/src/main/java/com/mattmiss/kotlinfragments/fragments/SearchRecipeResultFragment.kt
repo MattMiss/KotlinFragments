@@ -64,6 +64,7 @@ class SearchRecipeResultFragment : androidx.fragment.app.Fragment() {
     private lateinit var savedItemViewModel: SavedItemViewModel
 
 
+
     companion object {
         fun newInstance(recipeJSONString: String, position: Int): SearchRecipeResultFragment {
 

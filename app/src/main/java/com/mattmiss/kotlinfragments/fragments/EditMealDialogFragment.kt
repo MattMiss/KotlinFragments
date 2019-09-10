@@ -10,13 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mattmiss.kotlinfragments.R
 import com.mattmiss.kotlinfragments.adapters.ChosenMealsListAdapter
 import com.mattmiss.kotlinfragments.models.SavedItemViewModel
-import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import lecho.lib.hellocharts.model.SliceValue
 import android.graphics.Color
-import com.mattmiss.kotlinfragments.utils.Utils
-import kotlinx.android.synthetic.main.fragment_add_meal_dialog.btnAddChoice
+import com.mattmiss.kotlinfragments.MealItem
 import kotlinx.android.synthetic.main.fragment_add_meal_dialog.date
 import kotlinx.android.synthetic.main.fragment_add_meal_dialog.dateLayout
 import kotlinx.android.synthetic.main.fragment_add_meal_dialog.recyclerMealsChosen
@@ -28,9 +26,9 @@ import kotlin.collections.ArrayList
 class EditMealDialogFragment : androidx.fragment.app.DialogFragment(){
 
     private var chosenObject = JSONObject()
+    private lateinit var mealItem : MealItem
 
     private var chosenMeals = arrayListOf<JSONObject>()
-
 
     private lateinit var adapter: ChosenMealsListAdapter
 
@@ -38,6 +36,15 @@ class EditMealDialogFragment : androidx.fragment.app.DialogFragment(){
 
     private var listener: AddMealToDayListener? = null
     private lateinit var savedItemViewModel: SavedItemViewModel
+
+
+    // using about averages from Atwater conversions (https://www.nutribase.com/atwater.html)
+    private val CARBS_TO_CALS = 3.9f
+    private val PROTEIN_TO_CALS = 3.5f
+    private val FAT_TO_CALS = 8.37f
+    private val SUGAR_TO_CALS = 4f
+    private val FIBER_TO_CALS = 2f
+
 
     interface AddMealToDayListener {
         fun onDone(dayMeals: JSONObject)
@@ -81,80 +88,161 @@ class EditMealDialogFragment : androidx.fragment.app.DialogFragment(){
             datePickerDialog.show()
         }
 
+        // sets the chosenObject and the mealItem
+        setChosenObject()
+
+        // sets the date
+        setDate(mealItem.date)
+
+        // a temp way of getting a chosenMeals list
+        chosenMeals = mealItem.tempGetChosenMeals()
+
+        // set the adapter using the meals(MealItem.FoodItems) in the MealItem
+        adapter.setSavedItems(chosenMeals)
+
+        // Sets all the numbers and pie chart percentages
+        setOverallNumbers()
 
 
-        btnAddChoice.setOnClickListener{
-
-
+        btnBack.setOnClickListener{
+            dismiss()
         }
-
-        getAndSetDate(chosenObject)
-        getAndSetMeals(chosenObject)
-
-        setOverallNumbers(chosenMeals)
-
-        setLabels(chosenMeals)
 
     }
 
     companion object{
-        fun newInstance(savedItem: JSONObject) : EditMealDialogFragment{
-            val addMealDialog = EditMealDialogFragment()
 
-            addMealDialog.chosenObject = savedItem
-
-            return addMealDialog
+        fun newInstance(savedItem: JSONObject) = EditMealDialogFragment().apply {
+            arguments = Bundle().apply {
+                putString("chosenItem", savedItem.toString())
+            }
         }
     }
 
+    fun setChosenObject(){
+        chosenObject = JSONObject(arguments?.getString("chosenItem"))
+        mealItem = MealItem.newInstance(chosenObject)
+        mealItem.init()
+    }
+
+
+    // used to set date from loaded MealItem
+    fun setDate(newDate : String){
+        date.setText(newDate)
+        dateChosen = true
+    }
+
+    // used when datePicker is used
     fun setDate(month: Int, day: Int, year: Int){
         date.setText("${month + 1}-$day-$year")
         dateChosen = true
     }
 
-    fun getAndSetDate(savedItem: JSONObject){
-        val chosenDate = savedItem.get("date")
 
-        date.setText("$chosenDate")
-        dateChosen = true
+
+    fun setOverallNumbers(){
+        val calories = mealItem.totalCaloriesAmount.toString()
+        caloriesAmount.text = calories
+
+        val carbs = ("%.2f".format(mealItem.totalCarbsAmount))
+        carbsAmount.text = carbs
+
+        val protein = ("%.2f".format(mealItem.totalProteinAmount))
+        proteinAmount.text = protein
+
+        //val sodium = ("%.2f".format(mealItem.totalSodiumAmount))
+        //sodiumAmount.text = sodium
+
+        val fat = ("%.2f".format(mealItem.totalFatAmount))
+        fatAmount.text = fat
+
+        val sugar = ("%.2f".format(mealItem.totalSugarAmount))
+        sugarAmount.text = sugar
+
+        val fiber = ("%.2f".format(mealItem.totalFiberAmount))
+        fiberAmount.text = fiber
+
+
+
+        // set the pie labels and slice amounts
+        setPieLabels(calories.toFloat(), carbs.toFloat(), protein.toFloat(), fat.toFloat()
+            , sugar.toFloat(), fiber.toFloat())
+
+
+        //val barParams = carbsActualBar.layoutParams
+        //Toast.makeText(activity, "${barParams.width}", Toast.LENGTH_SHORT).show()
+        //val multiplier = .2
+        //barParams.width = (barParams.width * multiplier).roundToInt()
+
+
     }
 
-    fun getAndSetMeals(savedItem: JSONObject){
-        val meals = savedItem.get("all_meals") as JSONArray
 
-        var x = 0
-
-        while (x < meals.length()){
-            chosenMeals.add(meals.get(x) as JSONObject)
-            x++
-        }
-        adapter.setSavedItems(chosenMeals)
-    }
-
-
-    fun setOverallNumbers(meals: ArrayList<JSONObject>){
-
-    }
-
-
-    fun setLabels(meals: ArrayList<JSONObject>){
-        meals.forEach { Utils.longInfo(it.toString()) }
-
-
-        setPieLabels()
-    }
-
-    fun setPieLabels(){
+    fun setPieLabels(calsIn : Float, carbsIn : Float, proteinIn : Float, fatIn : Float,
+                     sugarIn : Float, fiberIn : Float){
         val pieData = ArrayList<SliceValue>()
 
-        pieData.add(SliceValue(15f, Color.BLUE))
-        pieData.add(SliceValue(25f, Color.GRAY))
-        pieData.add(SliceValue(10f, Color.RED))
-        pieData.add(SliceValue(60f, Color.MAGENTA))
+
+        val totalCalories = calsIn
+
+        val totalCarbs = carbsIn * CARBS_TO_CALS
+        val totalProtein = proteinIn * PROTEIN_TO_CALS
+        val totalFat = fatIn * FAT_TO_CALS
+        val totalSugar = sugarIn * SUGAR_TO_CALS
+        val totalFiber = fiberIn * FIBER_TO_CALS
+
+        // This total temp calories might be slightly different than the calsIn number
+        // We will calculate new percentages based off these numbers, then convert to the
+        // calsIn number using the new percentages
+        val totalTempCalories = totalCarbs + totalProtein + totalFat + totalSugar + totalFiber
+
+
+        val carbPercent = totalCarbs / totalTempCalories
+        val proteinPercent = totalProtein / totalTempCalories
+        val fatPercent = totalFat / totalTempCalories
+        val sugarPercent = totalSugar / totalTempCalories
+        val fiberPercent = totalFiber / totalTempCalories
+
+        guidelineCarbsActualAmount.setGuidelinePercent(carbPercent)
+        carbsNum.text = carbsIn.toString()
+
+        guidelineProteinActualAmount.setGuidelinePercent(proteinPercent)
+        proteinNum.text = proteinIn.toString()
+
+        guidelineFatActualAmount.setGuidelinePercent(fatPercent)
+        fatNum.text = fatIn.toString()
+
+        guidelineSugarActualAmount.setGuidelinePercent(sugarPercent)
+        sugarNum.text = sugarIn.toString()
+
+        guidelineFiberActualAmount.setGuidelinePercent(fiberPercent)
+        fiberNum.text = fiberIn.toString()
+
+        val carbAmountNew = carbPercent * calsIn
+        val proteinbAmountNew = proteinPercent * calsIn
+        val fatAmountNew = fatPercent * calsIn
+        val sugarAmountNew = sugarPercent * calsIn
+        val fiberAmountNew = fiberPercent * calsIn
+
+
+        // yellow carbs
+        pieData.add(SliceValue(carbPercent, Color.parseColor("#ffca42")).setLabel("${"%.2f".format(carbPercent * 100)}%"))
+        // red protein
+        pieData.add(SliceValue(proteinPercent, Color.parseColor("#ff4040")).setLabel("${"%.2f".format(proteinPercent * 100)}%"))
+        // purple fat
+        pieData.add(SliceValue(fatPercent, Color.parseColor("#b573eb")).setLabel("${"%.2f".format(fatPercent * 100)}%"))
+        // blue sugar
+        pieData.add(SliceValue(sugarPercent, Color.parseColor("#4db5ff")).setLabel("${"%.2f".format(sugarPercent * 100)}%"))
+        // green fiber
+        pieData.add(SliceValue(fiberPercent, Color.parseColor("#39ad47")).setLabel("${"%.2f".format(fiberPercent * 100)}%"))
 
         val pieChartData = PieChartData(pieData)
-        pieChartData.setHasCenterCircle(true).setCenterCircleScale(.45f).setCenterCircleColor(Color.parseColor("#EEFFFFFF"))
-
+        pieChartData.setHasCenterCircle(true).setCenterCircleScale(.3f).setCenterCircleColor(Color.parseColor("#00FFFFFF"))
+        // set the space between each slice to the minimum (other than 0)
+        pieChartData.slicesSpacing = 1
+        pieChartData.setHasLabels(true)
+        pieChartData.isValueLabelBackgroundAuto = false
+        pieChartData.valueLabelBackgroundColor = Color.parseColor("#00FFFFFF")
 
         pieChartNutrients.pieChartData = pieChartData
     }

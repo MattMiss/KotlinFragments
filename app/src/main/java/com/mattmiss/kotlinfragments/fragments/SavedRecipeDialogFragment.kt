@@ -242,7 +242,7 @@ class SavedRecipeDialogFragment : androidx.fragment.app.DialogFragment(){
 
         val containsDescription = recipeJSON.toString().contains(RECIPE_DESCRIPTION_STRING, ignoreCase = true)
 
-
+        println("RecipeJSONClicked: ${recipeJSON}")
 
         var servingCheckString = ""
 
@@ -251,7 +251,7 @@ class SavedRecipeDialogFragment : androidx.fragment.app.DialogFragment(){
             servingCheckString = recipeJSON.getJSONObject(SERVING_SIZES_STRING)
                 .getJSONObject(SINGLE_SERVING_STRING).toString()
         }catch (je: JSONException) {
-
+            servingCheckString = recipeJSON.getJSONObject(SINGLE_SERVING_STRING).toString()
         }
 
         val containsCalcium = servingCheckString.contains(CALCIUM_STRING, ignoreCase = true)

@@ -39,6 +39,7 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
     val SERVING_DESCRIPTION_STRING = "serving_description"
     val SERVING_ID_STRING = "serving_id"
     val SODIUM_STRING = "sodium"
+    val SUGAR_STRING = "sugar"
     val TRANS_FAT = "trans_fat"
     val VITAMIN_A_STRING = "vitamin_a"
     val VITAMIN_C_STRING = "vitamin_c"
@@ -88,7 +89,6 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
 
 
 
-
     fun setLabels(foodJSON : JSONObject, position : Int){
         //textViewFoodNameLabel.text = foodJSON.getString(FOOD_NAME_STRING)
 
@@ -125,6 +125,7 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
         val containsServingDescription = servingCheckString.contains(SERVING_DESCRIPTION_STRING, ignoreCase = true)
         val containsServingID = servingCheckString.contains(SERVING_ID_STRING, ignoreCase = true)
         val containsSodium = servingCheckString.contains(SODIUM_STRING, ignoreCase = true)
+        val containsSugar = servingCheckString.contains(SUGAR_STRING, ignoreCase = true)
         val containsTransFat = servingCheckString.contains(TRANS_FAT, ignoreCase = true)
         val containsVitaminA = servingCheckString.contains(VITAMIN_A_STRING, ignoreCase = true)
         val containsVitaminC = servingCheckString.contains(VITAMIN_C_STRING, ignoreCase = true)
@@ -242,6 +243,12 @@ class SavedResultFragment : androidx.fragment.app.Fragment() {
         }else{
             textViewSodiumAmount.text = NO_VALUE_STRING
             textViewSodiumSize.text = " "
+        }
+        if (containsSugar){
+            textViewTotalSugarsAmount.text = servingCheckJSON.getString(SUGAR_STRING)
+        }else{
+            textViewTotalSugarsAmount.text = NO_VALUE_STRING
+            textViewTotalSugarsSize.text = " "
         }
         if (containsTransFat){
             textViewTransFatAmount.text = servingCheckJSON.getString(TRANS_FAT)

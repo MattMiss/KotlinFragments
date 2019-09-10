@@ -157,7 +157,7 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
         object : AsyncTask<String, String, String>() {
             override fun doInBackground(vararg arg0: String): String {
 
-                val url = builder.buildFoodsSearchUrl(query, 1)
+                val url = builder.buildFoodsSearchUrl(query, 0)
 
                 // Request a string response from the provided URL.
                 val stringRequest = StringRequest(
@@ -166,6 +166,9 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
 
                         // Get the entire JSON object in one long line
                         val responseJSON = JSONObject(response.toString())
+
+                        print("RESPONSE LONG JSON FOOD")
+                        Utils.longInfo(responseJSON.toString())
 
                         // get the "foods" object ("foods" is the only object anyways
                         val foodsJSON = responseJSON.getJSONObject("foods")
@@ -258,7 +261,7 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
         object : AsyncTask<String, String, String>() {
             override fun doInBackground(vararg arg0: String): String {
 
-                val url = builder.buildRecipesSearchUrl(query, 1)
+                val url = builder.buildRecipesSearchUrl(query, 0)
                 // Request a string response from the provided URL.
                 val stringRequest = StringRequest(
                     com.android.volley.Request.Method.GET, url,
@@ -369,8 +372,8 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
             )
             newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
 
-            ft.addToBackStack("fragment_dialog")
-            newFragment.show(ft, "fragment_dialog")
+            ft.addToBackStack("search_result_fragment_dialog")
+            newFragment.show(ft, "search_result_fragment_dialog")
         }else if(resultCode == 2){
             val newFragment = SearchResultViewPagerParent.newInstance(
                 foodOrRecipeSave,
@@ -378,8 +381,8 @@ class FragmentSearchFood : androidx.fragment.app.Fragment() {
             )
             newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
 
-            ft.addToBackStack("fragment_dialog")
-            newFragment.show(ft, "fragment_dialog")
+            ft.addToBackStack("search_result_fragment_dialog")
+            newFragment.show(ft, "search_result_fragment_dialog")
         }else{
             Toast.makeText(activity!!, "Something went wrong!", Toast.LENGTH_SHORT).show()
         }

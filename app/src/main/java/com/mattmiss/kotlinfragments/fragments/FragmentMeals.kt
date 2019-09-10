@@ -1,12 +1,10 @@
 package com.mattmiss.kotlinfragments.fragments
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,16 +12,14 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mattmiss.kotlinfragments.*
-import com.mattmiss.kotlinfragments.adapters.SavedItemListAdapter
 import com.mattmiss.kotlinfragments.adapters.SavedMealListAdapter
-import com.mattmiss.kotlinfragments.adapters.SimpleAdapter
 import com.mattmiss.kotlinfragments.database.Meal
 import com.mattmiss.kotlinfragments.models.SavedItemViewModel
 import com.mattmiss.kotlinfragments.utils.SwipeToDeleteCallback
 import com.mattmiss.kotlinfragments.utils.Utils
 import kotlinx.android.synthetic.main.fragment_meals.*
 import org.json.JSONObject
-import java.util.*
+import java.lang.Exception
 
 
 class FragmentMeals : androidx.fragment.app.Fragment(), AddMealDialogFragment.AddMealToDayListener {
@@ -56,14 +52,19 @@ class FragmentMeals : androidx.fragment.app.Fragment(), AddMealDialogFragment.Ad
         recyclerview.layoutManager = LinearLayoutManager(recyclerview.context)
 
 
-
         val swipeHandler = object : SwipeToDeleteCallback(recyclerview.context) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-
                 // delete the row right here
+                Utils.longInfo("POSITION ${viewHolder.adapterPosition}")
+                Utils.longInfo(savedMeals[viewHolder.adapterPosition].toString())
+                try{
+                    // Right now this deletes okay but if you say no it doesn't go back
+                    askToDeleteMeals(savedMeals[viewHolder.adapterPosition])
+                }catch(e : Exception){
 
-                //adapter.re(viewHolder.adapterPosition)
+                }
+
             }
 
         }
@@ -121,8 +122,11 @@ class FragmentMeals : androidx.fragment.app.Fragment(), AddMealDialogFragment.Ad
     }
 
     fun updateMealList(meals: List<Meal>, adapter : SavedMealListAdapter){
+        savedMeals.clear()
 
-        for (item in meals){
+        val sortedMeals = meals.sortedBy { it.meal }
+
+        for (item in sortedMeals){
             val tempJSON = JSONObject(item.meal)
             savedMeals.add(tempJSON)
             savedDates.add(tempJSON.get("date").toString())
@@ -131,23 +135,25 @@ class FragmentMeals : androidx.fragment.app.Fragment(), AddMealDialogFragment.Ad
         adapter.setSavedItems(savedMeals)
     }
 
+
+    // Gets called from btnDone in AddMealDialogFragment
     override fun onDone(dayMeals: JSONObject) {
         val mealToAdd = Meal(dayMeals.toString())
         savedItemViewModel.insertMeal(mealToAdd)
     }
 
 
-    fun askToDeleteMeals(meals: JSONObject){
+    fun askToDeleteMeals(meal: JSONObject){
         val builder = AlertDialog.Builder(activity)
 
         // Display a message on alert dialog
-        builder.setMessage("Delete all meals for ${meals.getString("date")}?")
+        builder.setMessage("Delete all meal for ${meal.getString("date")}?")
 
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("Delete"){dialog, which ->
-            val allMeals = Meal(meals.toString())
+            val allMeals = Meal(meal.toString())
             savedItemViewModel.deleteMeal(allMeals)
-            savedMeals.remove(meals)
+            savedMeals.remove(meal)
 
             adapter.notifyDataSetChanged()
         }

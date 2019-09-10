@@ -182,10 +182,13 @@ class SavedFoodViewPagerParent : androidx.fragment.app.DialogFragment(){
         })
 
 
+
         notesBtnLayout.setOnClickListener{
 
+            print(noteList.adapter)
+
             //// Sets the length of the List depending on how many items there are
-            Utils.setListViewHeightBasedOnChildren(noteList)
+            //Utils.setListViewHeightBasedOnChildren(noteList)
 
             expandableLayout_notes.toggle()
 
@@ -206,6 +209,7 @@ class SavedFoodViewPagerParent : androidx.fragment.app.DialogFragment(){
 
                 add_note_entry.text.clear()
             }
+
             //// Sets the length of the List depending on how many items there are
             Utils.setListViewHeightBasedOnChildren(noteList)
             expandableLayout_notes.initLayout()
@@ -371,6 +375,10 @@ class SavedFoodViewPagerParent : androidx.fragment.app.DialogFragment(){
             Utils.setListViewHeightBasedOnChildren(directionList)
             expandableLayout_directions.initLayout()
         }
+
+
+        expandableLayout_notes.toggle()
+        expandableLayout_notes.initLayout()
     }
 
 

@@ -2,58 +2,122 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:id="@+id/linearLayout2">
+        android:layout_height="match_parent" android:id="@+id/linearLayout2">
 
-    <LinearLayout
-            android:orientation="vertical"
+    <ImageView
+            android:id="@+id/firstFragmentImageView4"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleX="2" android:scaleY="1.2"
+    />
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/foodTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-        >
-
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      tools:text="Title that could end up going onto two lines and making this view big"
-                      app:layout_constraintTop_toTopOf="parent"
-                      app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-                      app:layout_constraintEnd_toEndOf="parent" android:id="@+id/foodTitleText" android:textSize="18sp"
-                      android:fontFamily="@font/poppins_semibold" android:paddingStart="20dp" android:paddingTop="6dp"
-                      android:paddingEnd="20dp" android:paddingBottom="6dp"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/pagerConstraint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-        >
-
-            <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/pager"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:paddingStart="10dp"
+            android:paddingEnd="10dp" android:id="@+id/scrollView"
+            android:scrollbars="none"
             >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
 
-                <!-- Current + adjacent page titles...-->
-                <androidx.viewpager.widget.PagerTitleStrip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary"
-                        android:paddingBottom="4dp"
-                        android:paddingTop="4dp"
-                        android:textColor="#fff"
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha=".7">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:paddingTop="110dp"
+                        android:layout_marginTop="100dp" android:background="#FFFFFF" android:minHeight="600dp"
+                        android:id="@+id/linearLayout">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/foodTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:layout_conversion_absoluteHeight="75dp"
+                            tools:layout_conversion_absoluteWidth="392dp"
+                            tools:layout_conversion_wrapWidth="1080" tools:layout_conversion_wrapHeight="198"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  tools:text="Title that could end up going onto two lines and making this view big"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintEnd_toEndOf="parent" android:id="@+id/foodTitleText"
+                                  android:textSize="18sp"
+                                  android:fontFamily="@font/poppins_semibold" android:paddingStart="20dp"
+                                  android:paddingTop="6dp"
+                                  android:paddingEnd="20dp" android:paddingBottom="6dp"
+                                  tools:layout_conversion_absoluteHeight="75dp" tools:layout_editor_absoluteY="200dp"
+                                  tools:layout_editor_absoluteX="10dp" tools:layout_conversion_absoluteWidth="392dp"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.mattmiss.kotlinfragments.ui.HeightWrappingViewPager
+                            android:id="@+id/pager"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+
+                            app:layout_constraintTop_toBottomOf="@id/foodTitle">
+
+                        <!-- Current + adjacent page titles...-->
+                        <com.mattmiss.kotlinfragments.ui.PagerTabStripWidthFix
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary"
+                                android:paddingBottom="4dp"
+                                android:paddingTop="4dp"
+                                android:textColor="#fff"
+                                tools:layout_conversion_absoluteHeight="27dp" tools:layout_editor_absoluteY="276dp"
+                                tools:layout_editor_absoluteX="10dp" tools:layout_conversion_absoluteWidth="392dp">
+                        </com.mattmiss.kotlinfragments.ui.PagerTabStripWidthFix>
+
+                    </com.mattmiss.kotlinfragments.ui.HeightWrappingViewPager>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:id="@+id/imageLayoutBG"
+                        android:layout_gravity="center_horizontal" android:layout_marginTop="16dp"
+                        android:background="@drawable/background_circle_white"
                 >
-                </androidx.viewpager.widget.PagerTitleStrip>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageLayoutPie"
+                        android:forceHasOverlappingRendering="false">
+                    <lecho.lib.hellocharts.view.PieChartView android:layout_width="200dp"
+                                                             android:layout_height="200dp"
+                                                             app:layout_constraintEnd_toEndOf="parent"
+                                                             app:layout_constraintStart_toStartOf="parent"
+                                                             app:layout_constraintTop_toTopOf="parent"
+                                                             android:layout_marginStart="100dp"
+                                                             android:layout_marginEnd="100dp"
+                                                             android:layout_marginTop="16dp"/>
 
-            </androidx.viewpager.widget.ViewPager>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

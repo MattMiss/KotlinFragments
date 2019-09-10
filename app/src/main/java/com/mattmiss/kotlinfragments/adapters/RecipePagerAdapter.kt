@@ -51,6 +51,7 @@ class RecipePagerAdapter(manager: FragmentManager) : androidx.fragment.app.Fragm
         return title
     }
 
+    
     fun setJSONObject(recipeJSON : JSONObject){
        recipeItem = recipeJSON.toString()
     }

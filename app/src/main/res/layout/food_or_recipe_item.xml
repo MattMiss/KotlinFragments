@@ -22,25 +22,26 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:padding="2dp"
-              android:textSize="18dp"
+              android:textSize="16dp"
               android:text="Name"
               android:textStyle="bold"
               app:layout_constraintTop_toTopOf="parent"
               app:layout_constraintEnd_toEndOf="parent" android:textColor="#000000"
-              android:layout_marginEnd="8dp" app:layout_constraintStart_toEndOf="@+id/icon">
+              android:layout_marginEnd="8dp" app:layout_constraintStart_toEndOf="@+id/icon"
+              android:fontFamily="@font/poppins">
     </TextView>
     <TextView
             android:id="@+id/labelDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:textSize="16dp"
+            android:textSize="14sp"
             android:text="Description"
             app:layout_constraintTop_toBottomOf="@id/labelName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="8dp" android:paddingTop="1dp"
             android:paddingBottom="2dp" android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toStartOf="@+id/labelName">
+            app:layout_constraintStart_toStartOf="@+id/labelName" android:fontFamily="@font/poppins_light">
     </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

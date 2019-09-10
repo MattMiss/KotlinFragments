@@ -77,5 +77,4 @@ class SavedMealListAdapter internal constructor(context: Context, val clickListe
     override fun getItemCount() = savedItems.size
 
 
-
 }

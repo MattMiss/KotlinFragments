@@ -1,6 +1,7 @@
 package com.mattmiss.kotlinfragments.adapters
 
 import android.content.Context
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import com.mattmiss.kotlinfragments.R
 import kotlinx.android.synthetic.main.food_or_recipe_item.view.*
 import org.json.JSONObject
 
-class SavedItemListAdapter internal constructor(context: Context, val clickListener: (JSONObject) -> Unit) :
+class SavedItemListAdapter internal constructor(context: Context, val clickListener: (JSONObject, Int) -> Unit) :
     RecyclerView.Adapter<SavedItemListAdapter.SavedItemHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -27,7 +28,7 @@ class SavedItemListAdapter internal constructor(context: Context, val clickListe
         //val savedItemView: TextView = itemView.findViewById(R.id.textView)
 
 
-        fun bindSavedItem(savedItem: JSONObject, clickListener: (JSONObject) -> Unit){
+        fun bindSavedItem(savedItem: JSONObject, clickListener: (JSONObject, Int) -> Unit){
             this.savedItem = savedItem
             var foodOrRecipe = ""
 
@@ -36,19 +37,21 @@ class SavedItemListAdapter internal constructor(context: Context, val clickListe
                 view.labelDescription.text = savedItem.getString("recipe_description")
                 view.icon.setImageResource(R.drawable.ic_recipeicon)
 
-                foodOrRecipe = "recipe"
+                view.setOnClickListener { clickListener(savedItem, RECIPE_ID) }
             }else {
                 view.labelName.text = savedItem.getString("food_name")
-                view.labelDescription.text = savedItem.getString("food_type")
+                view.labelDescription.visibility = View.GONE
 
                 if (savedItem.toString().contains("brand")){
                     view.icon.setImageResource(R.drawable.ic_brandicon)
+                    view.labelDescription.visibility = View.VISIBLE
+                    view.labelDescription.text = savedItem.getString("brand_name")
                 }
-                foodOrRecipe = "food"
+                view.setOnClickListener { clickListener(savedItem, FOOD_ID) }
             }
 
 
-            view.setOnClickListener { clickListener(savedItem) }
+
         }
     }
 
@@ -72,6 +75,9 @@ class SavedItemListAdapter internal constructor(context: Context, val clickListe
 
     override fun getItemCount() = savedItems.size
 
-
+    companion object{
+        val FOOD_ID = 1
+        val RECIPE_ID = 2
+    }
 
 }

@@ -75,7 +75,7 @@ class SearchResultsAdapter(private val foodItem : ArrayList<JSONObject>, val cli
                 view.labelDescription.visibility = View.GONE
 
                 if (foodItem!!.containsServDesc){
-                    view.servingDescription.text = foodItem!!.servingDescription
+                    view.servingDescription.setText(foodItem!!.servingDescription)
                 }
                 if (foodItem!!.containsCalories){
                     view.caloriesNumber.text = foodItem!!.caloriesAmount

@@ -18,20 +18,24 @@ class FoodItem {
     var firstServing = JSONObject()
 
     var containsServDesc = false
+    var containsServAmount = false
     var containsCalories = false
     var containsCarbs = false
     var containsProtein = false
     var containsSodium = false
     var containsFat = false
     var containsSugar = false
+    var containsFiber = false
 
     var servingDescription = ""
+    var servingAmount = ""
     var caloriesAmount = ""
     var carbsAmount = ""
     var proteinAmount = ""
     var sodiumAmount = ""
     var fatAmount = ""
     var sugarAmount = ""
+    var fiberAmount = ""
 
     val warningsList =
         arrayListOf("High Carbs", "High Fat", "High Sugar", "High Sodium")
@@ -39,29 +43,41 @@ class FoodItem {
     var currentWarningList = arrayListOf<String>()
 
     fun setValues(){
+        println("Checking Values")
         if (foodJSON != null){
             val namesArray = foodJSON.names().toString()
+
+            if (namesArray.contains("serving_amount", true)){
+                containsServAmount = true
+                servingAmount = foodJSON.getString("serving_amount")
+            }
 
             // Check if it is food/brand or recipe
             if (namesArray.contains("food", true)){
                 isFood = true
                 foodName = foodJSON.getString("food_name")
-
+                println(namesArray)
                 // check if it is a brand or not
-                if  (foodJSON.toString().contains("brand_name")){
+                if  (namesArray.contains("brand_name", true)){
                     isBrand = true
                     brandName = foodJSON.getString("brand_name")
                 }
 
-                if (namesArray.contains("servings", true)){
-                    val tempServings = foodJSON.getJSONObject("servings")
+                if (namesArray.contains("serving", true)){
+                    println("FoodJSON: ${foodJSON}")
+                    var tempServingString = ""
+
+                    try{
+                        tempServingString = foodJSON.getJSONObject("servings").toString()
+                    }catch(e : JSONException){
+                        tempServingString = foodJSON.getJSONObject("serving").toString()
+                    }
+
+                    val tempServings = JSONObject(tempServingString)
+
+                    println("TempServingJSON: ${tempServings}")
+
                     var firstServingString = ""
-
-                    val servingNames = tempServings.names() as JSONArray
-
-                    //println(servingNames.length())
-                    //println(servingNames.toString())
-                    //Utils.longInfo(tempServings.toString())
 
                     try{
                         firstServingString = tempServings.getJSONArray("serving").get(0).toString()
@@ -71,6 +87,8 @@ class FoodItem {
 
                     firstServing = JSONObject(firstServingString)
 
+                    println("FoodJSON First Serving: ${firstServing}")
+3
                     if (firstServing.toString().contains("serving_description", true)){
                         containsServDesc = true
                         servingDescription = firstServing.getString("serving_description")
@@ -99,6 +117,10 @@ class FoodItem {
                         containsSugar = true
                         sugarAmount = firstServing.getString("sugar")
                     }
+                    if (firstServing.toString().contains("fiber", true)) {
+                        containsFiber = true
+                        fiberAmount = firstServing.getString("fiber")
+                    }
 
                     setWarnings(foodJSON)
                 }
@@ -108,6 +130,49 @@ class FoodItem {
                 isRecipe = true
                 foodName = foodJSON.getString("recipe_name")
                 recipeDescription = foodJSON.getString("recipe_description")
+
+
+                if (foodJSON.names().toString().contains("serving",true)){
+
+                    try{
+                        val serving = foodJSON.getJSONObject("serving_sizes")
+                            .getJSONObject("serving")
+
+                        if (serving.toString().contains("calories", true)) {
+                            containsCalories = true
+                            caloriesAmount = serving.get("calories").toString()
+                        }
+                        if (serving.toString().contains("carbohydrate", true)) {
+                            containsCarbs = true
+                            carbsAmount = serving.getString("carbohydrate")
+                        }
+                        if (serving.toString().contains("protein", true)){
+                            containsProtein = true
+                            proteinAmount = serving.getString("protein")
+                        }
+                        if (serving.toString().contains("sodium", true)) {
+                            containsSodium = true
+                            sodiumAmount = serving.getString("sodium")
+                        }
+                        if (serving.toString().contains("fat", true)) {
+                            containsFat = true
+                            fatAmount = serving.getString("fat")
+                        }
+                        if (serving.toString().contains("sugar", true)) {
+                            containsSugar = true
+                            sugarAmount = serving.getString("sugar")
+                        }
+                        if (serving.toString().contains("fiber", true)) {
+                            containsFiber = true
+                            fiberAmount = serving.getString("fiber")
+                        }
+
+                    }catch (e : JSONException){
+
+                    }
+
+
+                }
             }
         }
     }

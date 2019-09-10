@@ -1,28 +1,18 @@
 package com.mattmiss.kotlinfragments.fragments
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.fatsecret.platform.model.Food
 import com.mattmiss.kotlinfragments.adapters.FoodPagerAdapter
 import com.mattmiss.kotlinfragments.R
 import com.mattmiss.kotlinfragments.adapters.RecipePagerAdapter
-import com.mattmiss.kotlinfragments.database.SavedItem
 import kotlinx.android.synthetic.main.pager_tabs.*
 import org.json.JSONObject
-import java.util.*
 
 
-class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
-
-    var adapter : Any? = null
-
+class SavedItemsViewPagerParent : androidx.fragment.app.DialogFragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.pager_tabs, container)
@@ -40,16 +30,9 @@ class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
         if (resultCode == 1){
             foodTitleText.text = foodOrRecipeJSON.get("food_name").toString()
 
-            adapter = FoodPagerAdapter(childFragmentManager)
-
-            // Null Safety Check
-            val tempAdapter = adapter as FoodPagerAdapter
-
-            if (tempAdapter != null){
-                tempAdapter.setJSONObject(foodOrRecipeJSON)
-                pager.adapter = tempAdapter
-            }
-
+            val adapter = FoodPagerAdapter(childFragmentManager)
+            adapter.setJSONObject(foodOrRecipeJSON)
+            pager.adapter = adapter
 
         }else if (resultCode == 2){
             foodTitleText.text = foodOrRecipeJSON.get("recipe_name").toString()
@@ -60,15 +43,11 @@ class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
 
             println(servingsJSON)
 
-            // Null Safety Check
-            adapter = RecipePagerAdapter(childFragmentManager)
 
-            val tempAdapter = adapter as RecipePagerAdapter
 
-            if (tempAdapter != null){
-                tempAdapter.setJSONObject(foodOrRecipeJSON)
-                pager.adapter = tempAdapter
-            }
+            val adapter = RecipePagerAdapter(childFragmentManager)
+            adapter.setJSONObject(foodOrRecipeJSON)
+            pager.adapter = adapter
         }
 
 
@@ -91,48 +70,16 @@ class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
         if (resultCode == 1){
             val newFragment = AddNotesBeforeFoodSave.newInstance(foodSave)
             newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
-            newFragment.setTargetFragment(this, 2)
-
             ft.addToBackStack("fragment_foodSave_dialog")
             newFragment.show(ft, "fragment_foodSave_dialog")
         }else if(resultCode == 2){
             val newFragment = AddNotesBeforeRecipeSave.newInstance(foodSave)
             newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
-            newFragment.setTargetFragment(this, 1)
             ft.addToBackStack("fragment_recipeSave_dialog")
             newFragment.show(ft, "fragment_recipeSave_dialog")
         }
 
 
-    }
-
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK){
-            if (requestCode == 2){
-                (adapter as FoodPagerAdapter).notifyDataSetChanged()
-
-                val savedItem = JSONObject(data?.getStringExtra("saved_food_item"))
-
-                val name = savedItem.getString("food_name")
-
-                Toast.makeText(activity, name, Toast.LENGTH_SHORT).show()
-            }
-            else if (requestCode == 1){
-                (adapter as RecipePagerAdapter).notifyDataSetChanged()
-
-                val savedItem = JSONObject(data?.getStringExtra("saved_recipe_item"))
-
-                val name = savedItem.getString("recipe_name")
-
-                Toast.makeText(activity, name, Toast.LENGTH_SHORT).show()
-            }
-
-            dismiss()
-        }
     }
 
 
@@ -142,8 +89,8 @@ class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
          * Create a new instance of CustomDialogFragment, providing "num" as an
          * argument.
          */
-        fun newInstance(foodJSON : JSONObject, resultCode: Int): SearchResultViewPagerParent {
-            val fragmentDialog = SearchResultViewPagerParent()
+        fun newInstance(foodJSON : JSONObject, resultCode: Int): SavedItemsViewPagerParent {
+            val fragmentDialog = SavedItemsViewPagerParent()
 
              //Supply num input as an argument.
             val args = Bundle()

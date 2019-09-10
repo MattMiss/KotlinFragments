@@ -1,6 +1,8 @@
 package com.mattmiss.kotlinfragments.fragments
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -156,6 +158,12 @@ class AddNotesBeforeRecipeSave : androidx.fragment.app.DialogFragment(){
                 // INSERT THE JSON OBJECT AFTER I APPEND THE NEW NOTES N SHIT
                 savedItemViewModel.insertRecipe(savedItem)
                 dismiss()
+
+                val intent = Intent()
+                intent.putExtra("saved_recipe_item", recipeSave.toString())
+
+                val targetFrag = targetFragment
+                targetFrag?.onActivityResult(1, Activity.RESULT_OK, intent)
 
                 // Print this if I want to see what the JSON toString looks like
                 //println(foodSave)

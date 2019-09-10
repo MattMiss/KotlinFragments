@@ -16,13 +16,9 @@ import com.mattmiss.kotlinfragments.adapters.SavedItemListAdapter
 import com.mattmiss.kotlinfragments.utils.Utils
 import kotlinx.android.synthetic.main.fragment_add_meal_dialog.*
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
-
-
-
-
-
 
 
 class AddMealDialogFragment : androidx.fragment.app.DialogFragment(), ChooseMealDialogFragment.MealChoiceDialogListener{
@@ -98,7 +94,8 @@ class AddMealDialogFragment : androidx.fragment.app.DialogFragment(), ChooseMeal
 
             var mealsArray = JSONArray()
 
-            chosenMeals.forEach { mealsArray.put(it) }
+            // create a shortened version of each chosen Meal and add it to the mealsArray JSON
+            chosenMeals.forEach { mealsArray.put(createShortMeal(it)) }
 
             allMeals.put("all_meals", mealsArray)
 
@@ -244,6 +241,64 @@ class AddMealDialogFragment : androidx.fragment.app.DialogFragment(), ChooseMeal
         spinnerServingSize.setSelection(0, true)
     }
 
+    fun createShortMeal(meal: JSONObject) : JSONObject{
+        val shortMeal = JSONObject()
+
+        shortMeal.put("serving_amount", meal.get("serving_amount"))
+        val servingType = meal.get("serving_type")  // Save for later use
+        shortMeal.put("serving_type", servingType)
+
+        if (meal.toString().contains("recipe_name")){
+            shortMeal.put("recipe_id", meal.get("recipe_id"))
+            shortMeal.put("recipe_name", meal.get("recipe_name"))
+            shortMeal.put("recipe_description", meal.get("recipe_description"))
+
+            val serving = JSONObject()
+            serving.put("serving", meal.getJSONObject("serving_sizes")
+                .getJSONObject("serving"))
+
+            shortMeal.put("serving_sizes", serving)
+
+        }else{
+            shortMeal.put("food_id", meal.get("food_id"))
+            shortMeal.put("food_name", meal.get("food_name"))
+            shortMeal.put("food_type", meal.get("food_type"))
+            shortMeal.put("food_category", meal.get("food_category"))
+
+
+            try{
+                val servings = meal.getJSONObject("servings").getJSONArray("serving")
+
+                for (x in 0 until servings.length()) {
+                    val tempServing = servings.getJSONObject(x)
+                    if (tempServing.get("measurement_description").equals(servingType)){
+
+                        // Before adding the serving JSONObject to the shortMeal, it must be added to
+                        // the servings JSONObject in order to keep similar model structure with the search
+                        // result JSON that is returned
+                        val servings = JSONObject()
+
+                        servings.put("serving", tempServing)
+
+                        shortMeal.put("servings", servings)
+                    }
+                }
+
+            }catch (je: JSONException){
+
+                val servings = JSONObject()
+
+                servings.put("serving", meal.getJSONObject("servings").
+                    getJSONObject("serving"))
+
+                shortMeal.put("servings", servings)
+            }
+        }
+
+        Utils.longInfo(shortMeal.toString())
+
+        return shortMeal
+    }
 
     private fun mealClicked(savedItem : JSONObject) {
         val ft = activity!!.supportFragmentManager.beginTransaction()

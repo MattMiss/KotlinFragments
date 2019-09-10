@@ -3,48 +3,42 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:id="@+id/linearLayout2"
-        android:background="@android:color/transparent"
 >
 
 
     <ImageView
             android:id="@+id/firstFragmentImageView3"
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/food"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleX="2" android:scaleY="1.2"/>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:paddingStart="10dp"
             android:paddingEnd="10dp" android:id="@+id/scrollView"
-            android:layout_weight="1">
-        <androidx.constraintlayout.widget.ConstraintLayout
+            android:scrollbars="none">
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="0dp"
-                android:layout_marginStart="0dp" android:layout_marginEnd="0dp" android:layout_marginRight="0dp"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="0dp" app:layout_constraintBottom_toBottomOf="parent">
+        >
 
             <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    android:layout_height="match_parent"
+                    android:alpha=".7">
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                               android:orientation="vertical"
-                              android:layout_marginTop="88dp"
-                              android:background="@drawable/bg_white_rounded">
+                              android:layout_marginTop="100dp"
+                              android:background="#FFFFFF" android:paddingTop="100dp">
 
 
-                    <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"/>
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -61,7 +55,8 @@
                                 android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
-                                android:fontFamily="@font/poppins_semibold" android:textSize="16sp"/>
+                                android:fontFamily="@font/poppins_semibold" android:textSize="16sp"
+                                android:paddingStart="8dp" android:paddingEnd="8dp"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -205,7 +200,6 @@
                                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                android:layout_marginBottom="20dp"
 
                         >
 
@@ -282,14 +276,14 @@
                     <com.github.aakira.expandablelayout.ExpandableLinearLayout
                             android:id="@+id/expandableLayout_notes"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_below="@+id/expandableButton_notes"
                             android:background="@android:color/transparent"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:orientation="vertical"
                             app:ael_duration="100"
-                            app:ael_expanded="true"
+                            app:ael_expanded="false"
                             app:ael_interpolator="accelerate"
                             app:ael_orientation="vertical">
 
@@ -400,7 +394,7 @@
                     <com.github.aakira.expandablelayout.ExpandableLinearLayout
                             android:id="@+id/expandableLayout_tags"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_below="@+id/expandableButton_tags"
                             android:background="@android:color/transparent"
                             android:paddingStart="20dp"
@@ -518,7 +512,7 @@
                     <com.github.aakira.expandablelayout.ExpandableLinearLayout
                             android:id="@+id/expandableLayout_directions"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_below="@+id/expandableButton_directions"
                             android:background="@android:color/transparent"
                             android:paddingStart="20dp"
@@ -527,7 +521,7 @@
                             app:ael_duration="100"
                             app:ael_expanded="true"
                             app:ael_interpolator="accelerate"
-                            app:ael_orientation="vertical" android:layout_marginBottom="80dp">
+                            app:ael_orientation="vertical">
 
                         <ListView
                                 android:id="@+id/directionList"
@@ -580,24 +574,37 @@
 
 
                     </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+                    <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"/>
 
                 </LinearLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:id="@+id/imageLayoutBG"
+                        android:layout_gravity="center_horizontal" android:layout_marginTop="16dp"
+                        android:background="@drawable/background_circle_white"
+                >
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageLayout"
-                        android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp">
+                        android:id="@+id/imageLayoutPie"
+                        android:forceHasOverlappingRendering="false">
+                    <lecho.lib.hellocharts.view.PieChartView android:layout_width="200dp"
+                                                             android:layout_height="200dp"
+                                                             app:layout_constraintEnd_toEndOf="parent"
+                                                             app:layout_constraintStart_toStartOf="parent"
+                                                             app:layout_constraintTop_toTopOf="parent"
+                                                             android:layout_marginStart="100dp"
+                                                             android:layout_marginEnd="100dp"
+                                                             android:layout_marginTop="16dp"/>
 
-                    <ImageView android:layout_width="0dp" android:layout_height="150dp"
-                               app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                               app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                               app:srcCompat="@drawable/ic_foodicon"
-                               android:scaleType="fitXY" app:layout_constraintDimensionRatio="h,1:1"
-                               android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </FrameLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

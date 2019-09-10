@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -41,7 +42,7 @@ class FragmentMyFood : androidx.fragment.app.Fragment() {
 
         val adapter = SavedItemListAdapter(
             context!!,
-            { savedItem: JSONObject -> foodSaveClicked(savedItem) })
+            { savedItem: JSONObject, resultCode: Int -> foodSaveClicked(savedItem, resultCode) })
 
         recyclerview.adapter = adapter
 
@@ -75,7 +76,35 @@ class FragmentMyFood : androidx.fragment.app.Fragment() {
         }
     }
 
+    private fun foodSaveClicked(savedItem : JSONObject, resultCode: Int) {
+        val ft = activity!!.supportFragmentManager.beginTransaction()
 
+        // Result code comes from the SavedItemListAdapter onClick.
+        // 1 = Food and 2 = Recipe
+        if (resultCode == 1){
+            val newFragment = SavedItemsViewPagerParent.newInstance(
+                savedItem,
+                resultCode
+            )
+            newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
+
+            ft.addToBackStack("recipe_fragment_dialog")
+            newFragment.show(ft, "recipe_fragment_dialog")
+        }else if(resultCode == 2){
+            val newFragment = SavedItemsViewPagerParent.newInstance(
+                savedItem,
+                resultCode
+            )
+            newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
+
+            ft.addToBackStack("food_fragment_dialog")
+            newFragment.show(ft, "food_fragment_dialog")
+        }else{
+            Toast.makeText(activity!!, "Something went wrong!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    /*
     private fun foodSaveClicked(savedItem : JSONObject) {
         val ft = activity!!.supportFragmentManager.beginTransaction()
 
@@ -92,10 +121,8 @@ class FragmentMyFood : androidx.fragment.app.Fragment() {
             ft.addToBackStack("fragment_dialog")
             newFragment.show(ft, "fragment_dialog")
         }
-
-
-
     }
+    */
 
     fun updateAdapterFood(savedItems: List<SavedItem>, adapter : SavedItemListAdapter){
 
