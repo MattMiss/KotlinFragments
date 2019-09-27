@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.mattmiss.kotlinfragments.*
 import com.mattmiss.kotlinfragments.adapters.CustomListAdapter
 import com.mattmiss.kotlinfragments.database.SavedItem
+import com.mattmiss.kotlinfragments.database.SavedRecipe
 import com.mattmiss.kotlinfragments.models.SavedItemViewModel
 import com.mattmiss.kotlinfragments.utils.Utils
 import kotlinx.android.synthetic.main.add_notes_save.*
@@ -20,12 +21,16 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 
-class AddNotesBeforeFoodSave : androidx.fragment.app.DialogFragment(){
+class AddNotesBeforeItemSave : androidx.fragment.app.DialogFragment(), ChooseCategoryFragment.CategoryChoiceListener{
 
+
+    var isFood = true
     val notesArray = arrayListOf<String>()
     val tagsArray = arrayListOf<String>()
     val directionsArray = arrayListOf<String>()
     val utils = Utils
+    val category : String? = null
+    var categoryChosen = false
 
     private lateinit var savedItemViewModel: SavedItemViewModel
 
@@ -38,9 +43,15 @@ class AddNotesBeforeFoodSave : androidx.fragment.app.DialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val foodSave = JSONObject(arguments!!.getString("foodJSON"))
+        val itemSave = JSONObject(arguments!!.getString(ITEM_JSON_STRING))
 
-        lblAddNoteName.text = foodSave.getString("food_name")
+        val nameString = when (isFood){
+            true -> FOOD_NAME_STRING
+            false -> RECIPE_NAME_STRING
+        }
+
+        // nameString will be either "food_name" or "recipe_name"
+        lblAddNoteName.text = itemSave.getString(nameString)
 
         savedItemViewModel = ViewModelProviders.of(this).get(SavedItemViewModel::class.java)
 
@@ -59,6 +70,18 @@ class AddNotesBeforeFoodSave : androidx.fragment.app.DialogFragment(){
             // Must be false or else it overrides the ratingBar touch
             false
         }
+
+        chooseCategory.setOnClickListener {
+
+            val ft = activity!!.supportFragmentManager.beginTransaction()
+
+            val newFragment = ChooseCategoryFragment()
+            newFragment.setListener(this)
+            newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
+            ft.addToBackStack("fragment_choose_category_dialog")
+            newFragment.show(ft, "fragment_choose_category_dialog")
+        }
+
 
 
         // Set adapter and buttons for Notes
@@ -120,54 +143,72 @@ class AddNotesBeforeFoodSave : androidx.fragment.app.DialogFragment(){
         }
 
         btnFinalSaveFood.setOnClickListener{
-            if (categorySpinner.selectedItem == ""){
+            if (!categoryChosen){
                 Toast.makeText(activity, "Choose a category!", Toast.LENGTH_SHORT).show()
 
             }else{
-                foodSave.put("food_category", categorySpinner.selectedItem)
+                // If the itemSave is a food item, insert it into the viewmodel as Food
+                if (isFood){
+                    itemSave.put("food_category", category)
 
-                if (ratingsLine.visibility == View.INVISIBLE){
-                    foodSave.put("rating", ratingBar.rating.toDouble())
+                    if (ratingsLine.visibility == View.INVISIBLE){
+                        itemSave.put("rating", ratingBar.rating.toDouble())
+                    }
+
+                    if (notesArray.size > 0){
+                        val noteArrayJSON = JSONArray(notesArray)
+                        val notesJSON = JSONObject()
+
+                        notesJSON.put("note",noteArrayJSON)
+                        itemSave.put("notes", notesJSON)
+                    }
+                    if (tagsArray.size > 0){
+                        val tagsArrayJSON = JSONArray(tagsArray)
+                        val tagsJSON = JSONObject()
+
+                        tagsJSON.put("tag",tagsArrayJSON)
+                        itemSave.put("tags", tagsJSON)
+                    }
+                    if (directionsArray.size > 0){
+                        val directionsArrayJSON = JSONArray(directionsArray)
+                        val directionsJSON = JSONObject()
+
+                        directionsJSON.put("direction",directionsArrayJSON)
+                        itemSave.put("directions", directionsJSON)
+                    }
+
+                    val savedItem = SavedItem(itemSave.toString())
+
+                    // INSERT THE JSON OBJECT AFTER I APPEND THE NEW NOTES N SHIT
+                    savedItemViewModel.insertFood(savedItem)
+                    dismiss()
+
+
+
+                    val intent = Intent()
+                    intent.putExtra("saved_food_item", itemSave.toString())
+
+                    val targetFrag = targetFragment
+                    targetFrag?.onActivityResult(2, Activity.RESULT_OK, intent)
+
+                    // Print this if I want to see what the JSON toString looks like
+                    //println(foodSave)
+
+                }else{
+                    // Else if the itemSave is a Recipe item, insert it into the viewmodel as Recipe
+                    val savedItem = SavedRecipe(itemSave.toString())
+
+                    // INSERT THE JSON OBJECT AFTER I APPEND THE NEW NOTES N SHIT
+                    savedItemViewModel.insertRecipe(savedItem)
+                    dismiss()
+
+                    val intent = Intent()
+                    intent.putExtra("saved_recipe_item", itemSave.toString())
+
+                    val targetFrag = targetFragment
+                    targetFrag?.onActivityResult(1, Activity.RESULT_OK, intent)
                 }
 
-                if (notesArray.size > 0){
-                    val noteArrayJSON = JSONArray(notesArray)
-                    val notesJSON = JSONObject()
-
-                    notesJSON.put("note",noteArrayJSON)
-                    foodSave.put("notes", notesJSON)
-                }
-                if (tagsArray.size > 0){
-                    val tagsArrayJSON = JSONArray(tagsArray)
-                    val tagsJSON = JSONObject()
-
-                    tagsJSON.put("tag",tagsArrayJSON)
-                    foodSave.put("tags", tagsJSON)
-                }
-                if (directionsArray.size > 0){
-                    val directionsArrayJSON = JSONArray(directionsArray)
-                    val directionsJSON = JSONObject()
-
-                    directionsJSON.put("direction",directionsArrayJSON)
-                    foodSave.put("directions", directionsJSON)
-                }
-
-                val savedItem = SavedItem(foodSave.toString())
-
-                // INSERT THE JSON OBJECT AFTER I APPEND THE NEW NOTES N SHIT
-                savedItemViewModel.insertFood(savedItem)
-                dismiss()
-
-
-
-                val intent = Intent()
-                intent.putExtra("saved_food_item", foodSave.toString())
-
-                val targetFrag = targetFragment
-                targetFrag?.onActivityResult(2, Activity.RESULT_OK, intent)
-
-                // Print this if I want to see what the JSON toString looks like
-                //println(foodSave)
             }
         }
 
@@ -245,7 +286,7 @@ class AddNotesBeforeFoodSave : androidx.fragment.app.DialogFragment(){
         // Set adapter and buttons for Notes
         var directionAdapter = CustomListAdapter(
             directionList.context,
-            R.layout.directions_list_view, directionsArray, "direction"
+            R.layout.directions_list_view, directionsArray, "addedDirection"
         )
         directionList.adapter = directionAdapter
 
@@ -301,19 +342,27 @@ class AddNotesBeforeFoodSave : androidx.fragment.app.DialogFragment(){
 
     }
 
+    // gets called when the category is chosen from the
+    // ChooseCategoryFragment listener
+    override fun onCategoryChoice(category: String) {
+        Toast.makeText(activity, "$category chosen for category", Toast.LENGTH_SHORT).show()
+        chooseCategory.text = category
+        categoryChosen = true
+    }
+
 
     companion object {
 
-        /**
-         * Create a new instance of CustomDialogFragment, providing "num" as an
-         * argument.
-         */
-        fun newInstance(foodJSON : JSONObject): AddNotesBeforeFoodSave {
-            val fragmentDialog = AddNotesBeforeFoodSave()
+        const val ITEM_JSON_STRING = "itemJSON"
+        const val FOOD_NAME_STRING = "food_name"
+        const val RECIPE_NAME_STRING = "recipe_name"
+
+        fun newInstance(itemJSON : JSONObject): AddNotesBeforeItemSave {
+            val fragmentDialog = AddNotesBeforeItemSave()
 
              //Supply num input as an argument.
             val args = Bundle()
-            args.putString("foodJSON", foodJSON.toString())
+            args.putString(ITEM_JSON_STRING, itemJSON.toString())
             fragmentDialog.arguments = args
 
             return fragmentDialog

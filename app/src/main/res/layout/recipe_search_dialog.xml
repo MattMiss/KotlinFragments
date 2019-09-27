@@ -673,7 +673,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/constraintLayout2" app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/categoryFishSeafoodLayout" app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp">
 
@@ -711,7 +711,7 @@
                             android:id="@+id/linearLayout9"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/constraintLayout3">
+                            app:layout_constraintStart_toStartOf="@+id/categoryPoultryLayout">
                         <TextView
                                 android:text="0"
                                 android:id="@+id/textViewMonounsaturatedAmount"
@@ -724,7 +724,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:id="@+id/constraintLayout3"
+                            android:id="@+id/categoryPoultryLayout"
                             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="@+id/linearLayout9">
 

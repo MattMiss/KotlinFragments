@@ -6,17 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
-import com.fatsecret.platform.model.Food
 import com.mattmiss.kotlinfragments.adapters.FoodPagerAdapter
 import com.mattmiss.kotlinfragments.R
 import com.mattmiss.kotlinfragments.adapters.RecipePagerAdapter
-import com.mattmiss.kotlinfragments.database.SavedItem
 import kotlinx.android.synthetic.main.pager_tabs.*
 import org.json.JSONObject
-import java.util.*
 
 
 class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
@@ -89,14 +84,15 @@ class SearchResultViewPagerParent : androidx.fragment.app.DialogFragment(){
         val resultCode = arguments?.getInt("resultCode")
 
         if (resultCode == 1){
-            val newFragment = AddNotesBeforeFoodSave.newInstance(foodSave)
+            val newFragment = AddNotesBeforeItemSave.newInstance(foodSave)
             newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
             newFragment.setTargetFragment(this, 2)
 
             ft.addToBackStack("fragment_foodSave_dialog")
             newFragment.show(ft, "fragment_foodSave_dialog")
         }else if(resultCode == 2){
-            val newFragment = AddNotesBeforeRecipeSave.newInstance(foodSave)
+            val newFragment = AddNotesBeforeItemSave.newInstance(foodSave)
+            newFragment.isFood = false
             newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
             newFragment.setTargetFragment(this, 1)
             ft.addToBackStack("fragment_recipeSave_dialog")

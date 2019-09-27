@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="@drawable/gradient_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categoryDrinksLayout" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categoryMeatLayout" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categoryDrinksTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Drinks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/drinksTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/alcoholLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryDrinksTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/drinksLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/alcoholImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/alcoholName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Alcohol" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/alcoholImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/drinksLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryDrinksTitle"
+                app:layout_constraintStart_toEndOf="@id/alcoholLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/drinksImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/drinksName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Drinks" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/drinksImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categoryFruitsVeggiesLayout" app:layout_constraintTop_toBottomOf="@+id/categoryMeatLayout"
+            app:layout_constraintBottom_toTopOf="@+id/categoryMealsLayout"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categoryFruitsVeggiesTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Fruits / Veggies"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/fruitsVeggiesTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/fruitLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryFruitsVeggiesTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/vegetablesLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/fruitImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/fruitName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fruit" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/fruitImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/vegetablesLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryFruitsVeggiesTitle"
+                app:layout_constraintStart_toEndOf="@id/fruitLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/vegetablesImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/vegetablesName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vegetables" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/vegetablesImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categorySidesLayout" app:layout_constraintTop_toBottomOf="@+id/categoryMealsLayout"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categoryJunkFoodLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categorySidesTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Sides"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/saladsLayout"
+                app:layout_constraintTop_toBottomOf="@id/categorySidesTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/categorySaucesSpreadsLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/saladsImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/saladsName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Salads" android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins" app:layout_constraintTop_toBottomOf="@+id/saladsImage"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categorySaucesSpreadsLayout"
+                app:layout_constraintTop_toBottomOf="@id/categorySidesTitle"
+                app:layout_constraintStart_toEndOf="@id/saladsLayout"
+                app:layout_constraintEnd_toStartOf="@id/categorySoupsLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/saucesSpreadsImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/saucesSpreadsName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sauces / Spreads" android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/saucesSpreadsImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categorySoupsLayout"
+                app:layout_constraintTop_toBottomOf="@id/categorySidesTitle"
+                app:layout_constraintStart_toEndOf="@id/categorySaucesSpreadsLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/soupsImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/soupsName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Soups" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/soupsImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categoryMealsLayout"
+            app:layout_constraintTop_toBottomOf="@+id/categoryFruitsVeggiesLayout"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categorySidesLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categoryMealsTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Meals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/breakfastLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMealsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/categoryDinnerLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/breakfastImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/breakfastName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Breakfast" android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins" app:layout_constraintTop_toBottomOf="@+id/breakfastImage"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryDinnerLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMealsTitle"
+                app:layout_constraintStart_toEndOf="@id/breakfastLayout"
+                app:layout_constraintEnd_toStartOf="@id/categoryFastFoodLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/dinnerImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/dinnerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dinner" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/dinnerImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryFastFoodLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMealsTitle"
+                app:layout_constraintStart_toEndOf="@id/categoryDinnerLayout"
+                app:layout_constraintEnd_toStartOf="@id/categoryRestaurantLayout">
+
+            <ImageView
+                    android:id="@+id/fastFoodImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/fastFoodName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="FastFood" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/fastFoodImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryRestaurantLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMealsTitle"
+                app:layout_constraintStart_toEndOf="@id/categoryFastFoodLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/restaurantImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/restaurantName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurant" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/restaurantImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categoryMeatLayout" app:layout_constraintTop_toBottomOf="@+id/categoryDrinksLayout"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categoryFruitsVeggiesLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categoryMeatTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Meat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/beefLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMeatTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/categoryFishSeafoodLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/beefImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/beefName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Beef" android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins" app:layout_constraintTop_toBottomOf="@+id/beefImage"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryFishSeafoodLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMeatTitle"
+                app:layout_constraintStart_toEndOf="@id/beefLayout"
+                app:layout_constraintEnd_toStartOf="@id/categoryPoultryLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/fishSeafoodImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/fishSeafoodName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fish / Seafood" android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/fishSeafoodImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryPoultryLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryMeatTitle"
+                app:layout_constraintStart_toEndOf="@id/categoryFishSeafoodLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/poultryImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/poultryName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Poultry" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/poultryImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categoryJunkFoodLayout" app:layout_constraintTop_toBottomOf="@+id/categorySidesLayout"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categoryEtcLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categoryJunkFoodTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Junk Food"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/JunkFoodTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/snacksLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryJunkFoodTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/candySweetsLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/snacksImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/snacksName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Snacks" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/snacksImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/candySweetsLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryJunkFoodTitle"
+                app:layout_constraintStart_toEndOf="@id/snacksLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/candySweetsImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/candySweetsName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Candy / Sweets" android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/candySweetsImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/gradient_background"
+            android:id="@+id/categoryEtcLayout" app:layout_constraintTop_toBottomOf="@+id/categoryJunkFoodLayout"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/endSpace">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/categoryEtcTitle"
+                android:backgroundTint="#000000" android:background="#50FFFFFF">
+
+            <TextView
+                    android:text="Etc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins" android:textAlignment="center" android:textStyle="bold"
+                    android:textSize="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/dairyLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryEtcTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/categoryNutsSeedsLayout"
+        >
+
+            <ImageView
+                    android:id="@+id/dairyImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/dairyName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dairy" android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins" app:layout_constraintTop_toBottomOf="@+id/dairyImage"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryNutsSeedsLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryEtcTitle"
+                app:layout_constraintStart_toEndOf="@id/dairyLayout"
+                app:layout_constraintEnd_toStartOf="@id/categoryPastaRiceNoodlesLayout"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp">
+
+            <ImageView
+                    android:id="@+id/nutsSeedsImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/nutsSeedsName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nuts / Seeds / Grains / Beans" android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/nutsSeedsImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryPastaRiceNoodlesLayout"
+                app:layout_constraintTop_toBottomOf="@id/categoryEtcTitle"
+                app:layout_constraintStart_toEndOf="@id/categoryNutsSeedsLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/pastaRiceNoodlesImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:srcCompat="@drawable/ic_food_36"/>
+            <TextView
+                    android:id="@+id/pastaRiceNoodlesName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Pasta / Rice / Noodles" android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/pastaRiceNoodlesImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/categoryEtcLayout" app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/endSpace" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ import com.mattmiss.kotlinfragments.adapters.CustomListAdapter
 import com.mattmiss.kotlinfragments.database.SavedRecipe
 import com.mattmiss.kotlinfragments.models.SavedItemViewModel
 import com.mattmiss.kotlinfragments.utils.Utils
-import kotlinx.android.synthetic.main.add_notes_save.*
+import kotlinx.android.synthetic.main.add_recipe_save.*
 import org.json.JSONObject
 
 
@@ -109,7 +109,6 @@ class AddNotesBeforeRecipeSave : androidx.fragment.app.DialogFragment(){
         btnAddNote.setOnClickListener{
             if (add_note_entry.text.isNotEmpty()){
                 notesArray.add(add_note_entry.text.toString())
-
 
                 //// Sets the length of the List depending on how many items there are
                 Utils.setListViewHeightBasedOnChildren(noteList)

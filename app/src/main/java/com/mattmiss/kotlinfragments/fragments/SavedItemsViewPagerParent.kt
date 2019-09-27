@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.mattmiss.kotlinfragments.adapters.FoodPagerAdapter
 import com.mattmiss.kotlinfragments.R
 import com.mattmiss.kotlinfragments.adapters.RecipePagerAdapter
@@ -68,7 +67,7 @@ class SavedItemsViewPagerParent : androidx.fragment.app.DialogFragment(){
         val resultCode = arguments?.getInt("resultCode")
 
         if (resultCode == 1){
-            val newFragment = AddNotesBeforeFoodSave.newInstance(foodSave)
+            val newFragment = AddNotesBeforeItemSave.newInstance(foodSave)
             newFragment.setStyle(STYLE_NO_FRAME, R.style.DialogTheme)
             ft.addToBackStack("fragment_foodSave_dialog")
             newFragment.show(ft, "fragment_foodSave_dialog")

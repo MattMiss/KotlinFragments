@@ -1,6 +1,7 @@
 package com.mattmiss.kotlinfragments.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mattmiss.kotlinfragments.*
 import com.mattmiss.kotlinfragments.adapters.SavedItemListAdapter
+import com.mattmiss.kotlinfragments.adapters.SavedItemListAdapterNew
 import com.mattmiss.kotlinfragments.database.SavedItem
 import com.mattmiss.kotlinfragments.database.SavedRecipe
 import com.mattmiss.kotlinfragments.models.SavedItemViewModel
@@ -22,18 +24,18 @@ import org.json.JSONObject
 
 class FragmentMyFood : androidx.fragment.app.Fragment() {
 
+    private val TAG = FragmentMyFood::class.java.name
+
     private lateinit var savedItemViewModel: SavedItemViewModel
 
     private var savedFoodAndRecipes = arrayListOf<JSONObject>()
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_food, container, false)
-
 
     }
 
@@ -104,36 +106,24 @@ class FragmentMyFood : androidx.fragment.app.Fragment() {
         }
     }
 
-    /*
-    private fun foodSaveClicked(savedItem : JSONObject) {
-        val ft = activity!!.supportFragmentManager.beginTransaction()
-
-        if (savedItem.toString().contains("recipe")){
-            val newFragment = SavedRecipeDialogFragment.newInstance(savedItem)
-            newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
-
-            ft.addToBackStack("recipe_fragment_dialog")
-            newFragment.show(ft, "recipe_fragment_dialog")
-        }else{
-            val newFragment = SavedFoodViewPagerParent.newInstance(savedItem)
-            newFragment.setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
-
-            ft.addToBackStack("fragment_dialog")
-            newFragment.show(ft, "fragment_dialog")
-        }
-    }
-    */
 
     fun updateAdapterFood(savedItems: List<SavedItem>, adapter : SavedItemListAdapter){
+        println("UPDATING ADAPTER")
+        Log.i(TAG, "${savedItems.size}")
 
         for (item in savedItems){
+            Log.i(TAG, "${item.savedItem}")
             savedFoodAndRecipes.add(JSONObject(item.savedItem))
         }
 
+        println("SETTING SAVEDFOODANDRECIPES")
         adapter.setSavedItems(savedFoodAndRecipes)
+
     }
 
     fun updateAdapterRecipe(savedRecipes: List<SavedRecipe>, adapter : SavedItemListAdapter){
+
+
 
         for (item in savedRecipes){
             savedFoodAndRecipes.add(JSONObject(item.savedRecipe))

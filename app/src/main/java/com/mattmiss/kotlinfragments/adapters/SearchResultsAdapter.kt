@@ -98,18 +98,29 @@ class SearchResultsAdapter(private val foodItem : ArrayList<JSONObject>, val cli
                     view.labelDescription.text = foodItem!!.brandName
                     view.labelDescription.visibility = View.VISIBLE
                 }
+
                 // Set the click listener to the listener provided in the constructor
                 view.setOnClickListener { clickListener(foodSave,
                     FOOD_ID
                 ) }
+                // servingDescription needs its own onClick for some reason
+                view.servingDescription.setOnClickListener{ clickListener(foodSave,
+                    FOOD_ID
+                ) }
+
             }else if(foodItem!!.isRecipe){
                 view.labelName.text = foodItem!!.foodName
                 view.labelDescription.text = foodItem!!.recipeDescription
 
                 view.icon.setImageResource(R.drawable.ic_recipeicon)
 
+
                 // Set the click listener to the listener provided in the constructor
                 view.setOnClickListener { clickListener(foodSave,
+                    RECIPE_ID
+                ) }
+                // servingDescription needs its own onClick for some reason
+                view.servingDescription.setOnClickListener{ clickListener(foodSave,
                     RECIPE_ID
                 ) }
             }

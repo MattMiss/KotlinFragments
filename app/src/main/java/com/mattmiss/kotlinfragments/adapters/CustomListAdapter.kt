@@ -27,15 +27,15 @@ class CustomListAdapter(var mCtx: Context, var resource:Int, var notes:List<Stri
 
         textView.text = note
 
-        if (type.equals("direction")){
+        if (type.equals("addedDirection")){
             val lblDirectionNum : TextView = view.findViewById(R.id.lblNumber)
 
             lblDirectionNum.text = "${position + 1}"
         }
 
         if (type.equals("ingredient")){
-
-            val tempJSON = JSONObject(notes[position])
+            print(note)
+            val tempJSON = JSONObject(note)
             val description = tempJSON.get("ingredient_description").toString()
 
             val lblDirectionNum : TextView = view.findViewById(R.id.lblNumber)
@@ -48,8 +48,8 @@ class CustomListAdapter(var mCtx: Context, var resource:Int, var notes:List<Stri
         }
 
         if (type.equals("direction")){
-
-            val tempJSON = JSONObject(notes[position])
+            println(note)
+            val tempJSON = JSONObject(note)
             val description = tempJSON.get("direction_description").toString()
 
             val lblDirectionNum : TextView = view.findViewById(R.id.lblNumber)

@@ -21,13 +21,53 @@
             android:layout_height="match_parent"
             >
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="16dp" android:layout_marginStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-                android:id="@+id/constraintLayout" android:background="@drawable/button">
+                android:id="@+id/searchTypeLayout">
+
+            <TextView
+                    android:text="Search Type:"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchTypeText"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:textAlignment="center" android:textColor="#FFFFFF"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/toggleButtonFood"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/toggleButtonRecipe" android:layout_marginEnd="4dp"
+                    android:textOff="Food" android:textOn="Food" android:fontFamily="@font/poppins"
+                    android:background="@drawable/button_toggle"
+                    app:layout_constraintTop_toBottomOf="@id/searchTypeText"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/toggleButtonRecipe"
+                    app:layout_constraintStart_toEndOf="@+id/toggleButtonFood"
+                    app:layout_constraintTop_toTopOf="@id/toggleButtonFood"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="4dp" android:textOff="Recipe" android:textOn="Recipe"
+                    android:fontFamily="@font/poppins" android:background="@drawable/button_toggle"
+            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp" android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                android:id="@+id/constraintLayout" android:background="@drawable/button" android:visibility="gone">
 
             <TextView
                     android:text="Search Type:"
@@ -49,7 +89,8 @@
                 <RadioButton
                         android:text="Food / Product"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/radioBtnFoodProduct" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:id="@+id/radioBtnFoodProduct"
+                        android:layout_weight="1"
                         android:fontFamily="@font/poppins"/>
                 <RadioButton
                         android:text="Recipe"
@@ -69,7 +110,7 @@
                 android:textColor="#000000"
                 android:background="@drawable/button" android:hint="Enter Food or Product name" android:paddingTop="8dp"
                 android:paddingLeft="4dp" android:paddingBottom="4dp"
-                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/searchTypeLayout"
                 android:fontFamily="@font/poppins"/>
         <Button
                 android:text="@android:string/search_go"

@@ -41,11 +41,9 @@ class SavedMealListAdapter internal constructor(context: Context, val clickListe
                 view.labelName.text = savedItem.getString("recipe_name")
                 //view.labelDescription.text = savedItem.getString("recipe_description")
                 //view.icon.setImageResource(R.drawable.ic_recipeicon)
-
             }else {
                 view.labelName.text = savedItem.getString("food_name")
                 //view.labelDescription.text = savedItem.getString("food_type")
-
                 if (savedItem.toString().contains("brand")){
                     view.icon.setImageResource(R.drawable.ic_brandicon)
                 }
@@ -75,6 +73,7 @@ class SavedMealListAdapter internal constructor(context: Context, val clickListe
     }
 
     override fun getItemCount() = savedItems.size
+
 
 
 }
